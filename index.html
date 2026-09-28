@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khai Phá Luật Kết Hợp & Thuật Toán Apriori | Interactive Presentation</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap&subset=vietnamese" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/slides.css">
+  <link rel="stylesheet" href="css/simulator.css">
+</head>
+<body>
+
+  <!-- Ambient Light Effects -->
+  <div class="ambient-bg">
+    <div class="ambient-blob ambient-blob-1"></div>
+    <div class="ambient-blob ambient-blob-2"></div>
+    <div class="ambient-blob ambient-blob-3"></div>
+  </div>
+
+  <div id="app-root">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-logo">A</div>
+        <div class="brand-title">
+          Apriori <span class="brand-sub">Algorithm</span>
+        </div>
+      </div>
+
+      <!-- View Switcher -->
+      <nav class="view-nav">
+        <button id="nav-tab-presentation" class="nav-tab-btn active" title="Chế độ Trình Chiếu">
+          <span>📽️</span>
+          <span class="tab-text-full">Thuyết Trình</span>
+          <span class="tab-text-short">Slide</span>
+        </button>
+        <button id="nav-tab-simulator" class="nav-tab-btn" title="Chế độ Mô Phỏng Tương Tác">
+          <span>⚡</span>
+          <span class="tab-text-full">Live Simulator</span>
+          <span class="tab-text-short">Mô Phỏng</span>
+        </button>
+      </nav>
+
+      <!-- Action Tools -->
+      <div class="header-actions">
+        <button id="btn-toggle-scenario" class="btn-icon" title="Đổi Kịch Bản Demo (Phím S)">
+          <span>🛒</span>
+        </button>
+        <button id="btn-toggle-notes" class="btn-icon" title="Ghi Chú Diễn Giả (Phím N)">
+          <span>🎙️</span>
+        </button>
+        <button id="btn-toggle-overview" class="btn-icon" title="Tổng Quan Slide (Phím O)">
+          <span>📑</span>
+        </button>
+        <button id="btn-toggle-glossary" class="btn-icon" title="Quy Ước Ký Hiệu Chuẩn (Phím K)" onclick="document.getElementById('modal-math-glossary').classList.add('open')">
+          <span>📐</span>
+        </button>
+        <button id="btn-toggle-help" class="btn-icon" title="Phím Tắt (Phím ?)">
+          <span>❓</span>
+        </button>
+        <button id="btn-toggle-export" class="btn-icon" title="Xuất Slide (PowerPoint / PDF / Google Slides) [Phím P]">
+          <span>📥</span>
+        </button>
+        <button id="btn-toggle-fullscreen" class="btn-icon" title="Toàn Màn Hình (Phím F)">
+          <span>⛶</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Viewport -->
+    <main class="main-viewport">
+      
+      <!-- ===================================================================
+           VIEW 1: PRESENTATION DECK (10 SLIDES)
+           =================================================================== -->
+      <section id="presentation-view" class="presentation-container">
+        <div class="slide-stage">
+          
+          <div class="slides-viewport" id="slides-viewport">
+            
+            <!-- SLIDE 1: HERO COVER -->
+            <!-- SLIDE 1: HERO COVER -->
+            <article class="slide hero-slide active" data-slide="1">
+              <div class="hero-pill">
+                <span>✦</span> Khai Phá Quy Luật Giỏ Hàng (Market Basket Analysis)
+              </div>
+              <h1 class="hero-title" style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
+                <span style="font-size: 0.85em; opacity: 0.95; letter-spacing: -0.01em;">Thuật Toán Apriori</span>
+                <span class="glow" style="white-space: nowrap;">Nghệ Thuật Đoán Ý Người Mua</span>
+              </h1>
+              <p class="hero-desc" style="max-width: 780px;">
+                Làm sao siêu thị và sàn thương mại điện tử đoán trúng món bạn muốn mua tiếp theo giữa hàng triệu sản phẩm?
+              </p>
+              
+              <div class="hero-features">
+                <div class="hero-feature-item">
+                  <span>🏛️</span> Nền Tảng Data Mining (Agrawal 1994)
+                </div>
+                <div class="hero-feature-item">
+                  <span>✂️</span> Tiên Đề Tỉa Nhánh Đột Phá
+                </div>
+                <div class="hero-feature-item">
+                  <span>🎯</span> Bộ 3 Thước Đo Ra Quyết Định
+                </div>
+              </div>
+
+              <button class="hero-start-btn" onclick="window.presentationController?.nextSlide()">
+                Bắt Đầu Khám Phá ➔
+              </button>
+            </article>
+
+            <!-- SLIDE 2: THE HOOK (BEER & DIAPERS) -->
+            <article class="slide" data-slide="2">
+              <header class="slide-header">
+                <div class="slide-tag">01 • Nghịch Lý Thú Vị</div>
+                <h2 class="slide-title">Huyền Thoại: <span class="gradient-text">"Bia & Tã Giấy"</span> Chiều Thứ Sáu</h2>
+                <p class="slide-subtitle">Một phát hiện thực tế từ dữ liệu mà trực giác chuyên gia bán lẻ không bao giờ nghĩ tới.</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-2-cols">
+                  <div class="story-box" style="display: flex; flex-direction: column; gap: 1.5rem; height: 100%;">
+                    <div class="glass-card" style="flex: 1; justify-content: space-between;">
+                      <div>
+                        <div class="badge badge-candidate" style="width: fit-content; margin-bottom: 0.65rem;">Sự Thật Từ Dữ Liệu Bán Lẻ</div>
+                        <h3 style="color: #fff; margin-bottom: 0.75rem;">
+                          🔍 Phát Hiện Bất Thường Từ 100.000 Hóa Đơn
+                        </h3>
+                        <p style="color: var(--text-main); font-size: 1.15rem; line-height: 1.75;">
+                          Cứ mỗi chiều thứ Sáu, hệ thống siêu thị ghi nhận một hành vi kỳ lạ: Khách hàng mua <strong class="hl-gold">Tã giấy cho em bé</strong> lại có xu hướng rất cao xách thêm một vài lon <strong class="hl-cyan">Bia</strong> mát lạnh!
+                        </p>
+                      </div>
+                      <div style="font-size: 1.05rem; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.5rem;">
+                        Tỷ lệ mua chung cao gấp <strong>3.5 lần</strong> so với bất kỳ ngày nào khác trong tuần.
+                      </div>
+                    </div>
+
+                    <div class="story-card-highlight">
+                      <div class="story-icon-combo">
+                        <span>🍺</span>
+                        <span class="story-vs-badge">+</span>
+                        <span>👶</span>
+                      </div>
+                      <div>
+                        <strong style="color: #10b981; font-size: 1.25rem; display: block; margin-bottom: 6px;">
+                          🚀 Quyết Định Kinh Doanh Đột Phá
+                        </strong>
+                        <p style="font-size: 1.12rem; color: var(--text-main); line-height: 1.65; margin: 0;">
+                          Kê quầy bia ngay cạnh gian hàng tã ➔ Doanh số cả hai mặt hàng <strong class="hl-green">tăng vọt hơn 35%</strong> mà không tốn một đồng chi phí quảng cáo!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="glass-card highlight" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-frequent" style="width: fit-content; margin-bottom: 0.75rem;">Giải Mã Bản Chất Hành Vi</div>
+                      <h3 style="color: #fff; margin-bottom: 0.75rem;">
+                        Vì sao lại có sự kết hợp kỳ lạ này?
+                      </h3>
+                      <p style="color: var(--text-main); line-height: 1.75; font-size: 1.15rem; margin-bottom: 1rem;">
+                        Các ông bố trẻ tan sở được vợ dặn ghé siêu thị mua tã cho con. Nhân tiện cuối tuần có trận bóng đá ngoại hạng, họ tự thưởng một lốc bia để thư giãn cùng bạn bè.
+                      </p>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                      <div style="padding: 1.15rem 1.35rem; background: rgba(0,0,0,0.35); border-radius: 10px; border-left: 4px solid var(--accent-cyan); font-size: 1.05rem; line-height: 1.65; color: #e2e8f0;">
+                        🧠 <strong class="hl-cyan">Tâm lý ngữ cảnh (Contextual Shopping):</strong> Khách hàng không mua sắm ngẫu nhiên. Mỗi giỏ hàng là một <strong>tình huống tiêu dùng cụ thể</strong> trong đời sống thực.
+                      </div>
+                      <div style="padding: 1.15rem 1.35rem; background: rgba(99, 102, 241, 0.08); border-radius: 10px; border-left: 4px solid var(--accent-primary); font-size: 1.05rem; line-height: 1.65; color: #cbd5e1;">
+                        📊 <strong class="hl-gold">Sức mạnh Data Mining:</strong> Trực giác chuyên gia 20 năm không bao giờ tự nghĩ ra cách xếp Tã cạnh Bia. <strong>Chỉ có dữ liệu mới nói lên sự thật!</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">💡</span>
+                  <span><strong>Bài học kinh doanh cốt lõi:</strong> Mục tiêu của khai phá luật kết hợp không phải là tìm ra những điều hiển nhiên (như <em>Bàn chải kèm Kem đánh răng</em>), mà là phát hiện những <strong>mối liên hệ ngầm bất ngờ</strong> mang lại doanh thu đột phá!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 3: COMBINATORIAL EXPLOSION -->
+            <article class="slide" data-slide="3">
+              <header class="slide-header">
+                <div class="slide-tag">02 • Thách Thức Tính Toán</div>
+                <h2 class="slide-title">Bùng Nổ Tổ Hợp: <span class="gradient-text">Khi Duyệt Mò Trở Thành Thảm Họa</span></h2>
+                <p class="slide-subtitle">Không gian tìm kiếm hình mũ 2ᵈ: Tại sao máy tính mạnh nhất cũng chịu thua nếu kiểm tra ngây thơ?</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-2-cols" style="align-items: stretch;">
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                      <div class="badge badge-candidate" style="width: fit-content; margin-bottom: 0.75rem;">Quy Mô Bùng Nổ Số Mũ (2ᵈ - 1)</div>
+                      <h3 style="color: #fff; margin-bottom: 1.15rem;">
+                        Số Tổ Hợp Theo Danh Mục Sản Phẩm
+                      </h3>
+
+                      <div class="explosion-container" style="gap: 0.85rem;">
+                        <div class="explosion-row">
+                          <div class="explosion-bar-fill" style="width: 15%;"></div>
+                          <div class="explosion-label" style="font-size: 1.12rem;">10 món hàng</div>
+                          <div class="explosion-calc" style="font-size: 1.15rem;">2¹⁰ - 1 = 1.023 combo</div>
+                          <span class="badge badge-frequent">1ms là xong</span>
+                        </div>
+
+                        <div class="explosion-row">
+                          <div class="explosion-bar-fill" style="width: 45%;"></div>
+                          <div class="explosion-label" style="font-size: 1.12rem;">50 món hàng</div>
+                          <div class="explosion-calc" style="font-size: 1.15rem;">2⁵⁰ ≈ 1,12 triệu tỷ combo</div>
+                          <span class="badge badge-candidate">Mất vài tuần</span>
+                        </div>
+
+                        <div class="explosion-row danger">
+                          <div class="explosion-bar-fill" style="width: 80%;"></div>
+                          <div class="explosion-label" style="font-size: 1.12rem;">100 món hàng</div>
+                          <div class="explosion-calc" style="font-size: 1.15rem;">2¹⁰⁰ ≈ 1,26 × 10³⁰ combo</div>
+                          <span class="badge badge-pruned">Chạy cả tỷ năm!</span>
+                        </div>
+
+                        <div class="explosion-row danger">
+                          <div class="explosion-bar-fill" style="width: 100%;"></div>
+                          <div class="explosion-label" style="font-size: 1.12rem;">10.000 món (siêu thị thật)</div>
+                          <div class="explosion-calc" style="font-size: 1.15rem;">2¹⁰⁰⁰⁰ &gt;&gt; Số hạt vũ trụ</div>
+                          <span class="badge badge-pruned">Bất khả thi!</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.28); border-radius: 12px; padding: 1.1rem 1.35rem; font-size: 1.05rem; line-height: 1.6; color: #fecdd3; margin-top: 1rem;">
+                      🚨 <strong>Quy luật cấp số nhân:</strong> Cứ thêm đúng <strong>1 món mới</strong> vào siêu thị, số phép thử lại <strong>tăng gấp đôi</strong>! Duyệt vét cạn (Brute-force) là con đường bất khả thi đối với dữ liệu thực tế.
+                    </div>
+                  </div>
+
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 0.85rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-pruned" style="width: fit-content; margin-bottom: 0.5rem;">Nút Thắt Nghẽn Toán Học</div>
+                      <h3 style="color: #f87171; margin-bottom: 0.65rem;">
+                        ⚠️ Cái Bẫy Duyệt Mò (Brute-Force Bottleneck)
+                      </h3>
+                      
+                      <!-- Explanation Box for 2^d - 1 -->
+                      <div style="background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 10px; padding: 0.85rem 1.15rem; margin-bottom: 0.65rem;">
+                        <div style="font-weight: 800; color: #a5b4fc; font-size: 1.05rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                          <span>📐</span> Tại Sao Lại Là 2ᵈ - 1 Tổ Hợp?
+                        </div>
+                        <div style="color: #e0e7ff; font-size: 0.95rem; line-height: 1.55; display: flex; flex-direction: column; gap: 6px;">
+                          <div>
+                            <strong>1. Tại sao là 2ᵈ?</strong> Mỗi món hàng trong danh mục có đúng <strong>2 khả năng</strong>: Được chọn (1) hoặc Không chọn (0). Với danh mục <code class="math-term">d</code> món &rarr; có <span style="color:#38bdf8; font-weight:700;">2 &times; 2 &times; ... &times; 2 = 2ᵈ</span> tập con (Tập lũy thừa Power Set).
+                          </div>
+                          <div>
+                            <strong>2. Tại sao phải trừ 1 (-1)?</strong> Trừ đi duy nhất <strong>1 trường hợp rỗng (&empty;)</strong> khi không chọn món nào (vì bài toán chỉ xét giỏ hàng có &ge; 1 món).
+                          </div>
+                          <div style="background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 5px; font-size: 0.88rem; color: #fef08a;">
+                            💡 Ví dụ 3 món {Bia, Tã, Sữa}: 2³ - 1 = 8 - 1 = <strong>7 combo có nghĩa</strong>.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                      <div style="background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.25); border-radius: 10px; padding: 0.75rem 1rem;">
+                        <div style="font-weight: 800; color: #fca5a5; font-size: 0.98rem; margin-bottom: 2px;">⏱️ Giới Hạn Của Siêu Máy Tính:</div>
+                        <p style="color: #fecdd3; font-size: 0.9rem; line-height: 1.45; margin: 0;">
+                          Dù máy chủ xử lý <strong>1 tỷ combo/giây</strong>, để duyệt hết danh mục 100 món vẫn cần <strong>40 tỷ năm</strong> — gấp 3 lần tuổi thọ của toàn vũ trụ!
+                        </p>
+                      </div>
+
+                      <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 0.75rem 1rem;">
+                        <div style="font-weight: 800; color: #34d399; font-size: 0.98rem; margin-bottom: 2px;">💡 Lối Thoát Khai Phá Của Apriori:</div>
+                        <p style="color: #a7f3d0; font-size: 0.9rem; line-height: 1.45; margin: 0;">
+                          Không kiểm tra mù quáng! Apriori dùng <strong>tiên đề phản đơn điệu</strong> để <strong>cắt tỉa trước 99% tổ hợp vô vọng</strong> mà không tốn công quét đĩa CSDL.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">📐</span>
+                  <span><strong>Bản chất tổ hợp:</strong> Với danh mục <code class="math-term">d</code> món hàng, không gian tập con không rỗng có kích thước <code class="math-term">2ᵈ - 1</code>. Nếu siêu thị có 1.000 sản phẩm, số combo lớn hơn tổng số nguyên tử trong toàn vũ trụ!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 4: THREE GOLDEN METRICS (3-LAYER FILTER SYSTEM) -->
+            <article class="slide" data-slide="4">
+              <header class="slide-header" style="margin-bottom: 0.5rem;">
+                <div class="slide-tag">03 • Cơ Sở Toán Học Chuẩn Mực</div>
+                <h2 class="slide-title">Bộ 3 Thước Đo Vàng: <span class="gradient-text">Hệ Thống 3 Lớp Lọc Dữ Liệu</span></h2>
+                <p class="slide-subtitle">Chuẩn học thuật Agrawal (1994) & Tan (2006): Thiếu 1 trong 3 chỉ số sẽ dẫn đến quyết định sai lầm.</p>
+              </header>
+
+              <div class="slide-body" style="gap: 0.5rem;">
+                <!-- 3 Metric Cards Grid -->
+                <div class="grid-3-cols" style="align-items: stretch; gap: 1.15rem;">
+                  <!-- Support Card -->
+                  <div class="metric-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                      <div class="metric-card-header">
+                        <span class="metric-badge badge-candidate">LỚP 1 • LỌC NHIỄU</span>
+                        <span style="font-size: 1.35rem;">📊</span>
+                      </div>
+                      <div class="metric-title" style="font-size: 1.25rem;">1. Support (Độ hỗ trợ)</div>
+                      
+                      <div class="math-formula-box" style="margin: 0.3rem 0; padding: 6px 10px;">
+                        <div class="math-standard" style="justify-content: space-between; gap: 6px;">
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Món đơn:</span>
+                            <span style="color: #fbbf24; font-weight: 700;">Supp(A)</span>
+                            <span>=</span>
+                            <span class="math-frac">
+                              <span class="math-num">σ(A)</span>
+                              <span class="math-den">|D|</span>
+                            </span>
+                          </div>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Cả hai:</span>
+                            <span style="color: #fbbf24; font-weight: 700;">Supp(A ∪ B)</span>
+                            <span>=</span>
+                            <span class="math-frac">
+                              <span class="math-num">σ(A ∪ B)</span>
+                              <span class="math-den">|D|</span>
+                            </span>
+                          </div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #fef08a; background: rgba(0,0,0,0.3); padding: 3px 6px; border-radius: 4px; text-align: center; margin-top: 3px;">
+                          🎲 <strong>Gốc rễ xác suất:</strong> Xác suất đồng thời <code>P(A ∩ B)</code> trên không gian mẫu <code>|D|</code>
+                        </div>
+                      </div>
+
+                      <!-- Always-visible, intuitive explanation with larger font & probability theory -->
+                      <div class="formula-rationale-box">
+                        <div class="rationale-header" style="color: #fbbf24;">
+                          <span>💡</span> Tại sao có công thức? (Gốc rễ Xác Suất)
+                        </div>
+                        <div class="rationale-body">
+                          • <strong>Lý thuyết xác suất:</strong> Coi mỗi đơn hàng là một phép thử ngẫu nhiên. Support chính là <strong>xác suất thực nghiệm P(A ∩ B)</strong>.<br>
+                          • <strong>Tại sao chia |D|?</strong> Đếm được 100 đơn có Bia thì nhiều hay ít? Ở tiệm nhỏ (200 đơn) là <strong>cực lớn (50%)</strong>; ở Shopee (1 triệu đơn) chỉ là <strong>nhiễu (0.01%)</strong>. Chia |D| để chuẩn hóa về xác suất <strong>0% - 100%</strong> lọc sạch các combo hiếm.
+                        </div>
+                      </div>
+
+                      <div class="metric-example" style="font-size: 0.9rem; line-height: 1.45; margin-bottom: 0.35rem;">
+                        📊 <strong>Ví dụ:</strong> CSDL 1.000 đơn (|D| = 1.000). Có 400 đơn Bia ➔ <strong style="color: #fbbf24;">Supp(Bia) = P(Bia) = 40%</strong>. Có 200 đơn cả Bia & Tã ➔ <strong style="color: #fbbf24;">Supp(Bia ∪ Tã) = P(Bia ∩ Tã) = 20%</strong>.
+                      </div>
+                    </div>
+
+                    <div style="background: rgba(251, 191, 36, 0.08); border-left: 3px solid var(--accent-gold); padding: 0.45rem 0.75rem; border-radius: 6px; font-size: 0.9rem; color: #fef3c7; line-height: 1.45;">
+                      🛡️ <strong>Mục đích:</strong> Đo độ phổ biến toàn hệ thống. Loại bỏ các tổ hợp hiếm hoi do ngẫu nhiên (nhiễu).
+                    </div>
+                  </div>
+
+                  <!-- Confidence Card -->
+                  <div class="metric-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                      <div class="metric-card-header">
+                        <span class="metric-badge badge-rule">LỚP 2 • ĐỊNH HƯỚNG</span>
+                        <span style="font-size: 1.35rem;">🎯</span>
+                      </div>
+                      <div class="metric-title" style="font-size: 1.25rem;">2. Confidence (Độ tin cậy)</div>
+                      
+                      <div class="math-formula-box" style="margin: 0.3rem 0; padding: 6px 10px;">
+                        <div class="math-standard">
+                          <span style="color: #818cf8; font-weight: 700;">Conf(A ⇒ B)</span>
+                          <span>=</span>
+                          <span class="math-frac">
+                            <span class="math-num">Supp(A ∪ B)</span>
+                            <span class="math-den">Supp(A)</span>
+                          </span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #c7d2fe; background: rgba(0,0,0,0.3); padding: 3px 6px; border-radius: 4px; text-align: center; margin-top: 3px;">
+                          🎲 <strong>Gốc rễ xác suất:</strong> Xác suất có điều kiện Bayes <code>P(B|A) = P(A ∩ B) / P(A)</code>
+                        </div>
+                      </div>
+
+                      <!-- Always-visible, intuitive explanation with larger font & probability theory -->
+                      <div class="formula-rationale-box">
+                        <div class="rationale-header" style="color: #818cf8;">
+                          <span>💡</span> Tại sao có công thức? (Gốc rễ Xác Suất)
+                        </div>
+                        <div class="rationale-body">
+                          • <strong>Lý thuyết xác suất:</strong> Chính là định nghĩa chuẩn mực <strong>Xác suất có điều kiện P(B|A)</strong> của định lý Bayes (Biết A đã xảy ra, tính xác suất B xảy ra).<br>
+                          • <strong>Tại sao chia Supp(A)?</strong> Vì ta <strong>thu hẹp không gian mẫu</strong> chỉ xét nhóm khách ĐÃ MUA A. Do P(B|A) &ne; P(A|B) nên sinh ra <strong>định hướng 1 chiều</strong> (Xe máy &rarr; Mũ BH 95%, nhưng Mũ BH &rarr; Xe máy chỉ 5%).
+                        </div>
+                      </div>
+
+                      <div class="metric-example" style="font-size: 0.9rem; line-height: 1.45; margin-bottom: 0.35rem;">
+                        🎯 <strong>Ví dụ:</strong> Supp(Bia ∪ Tã) = 20%, Supp(Bia) = 40%:
+                        <br>➔ <strong style="color: #818cf8;">Conf = P(Tã | Bia) = 20% / 40% = 50%</strong>
+                      </div>
+                    </div>
+
+                    <div style="background: rgba(129, 140, 248, 0.08); border-left: 3px solid var(--accent-primary); padding: 0.45rem 0.75rem; border-radius: 6px; font-size: 0.9rem; color: #e0e7ff; line-height: 1.45;">
+                      🧭 <strong>Mục đích:</strong> Xác định chiều gợi ý bất đối xứng: Mua Máy in gợi ý Mực in khác hoàn toàn mua Mực gợi ý Máy in.
+                    </div>
+                  </div>
+
+                  <!-- Lift Card -->
+                  <div class="metric-card highlight" style="border-color: rgba(52, 211, 153, 0.4); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                      <div class="metric-card-header">
+                        <span class="metric-badge badge-frequent">LỚP 3 • HỆ SỐ ĐÒN BẨY</span>
+                        <span style="font-size: 1.35rem;">🚀</span>
+                      </div>
+                      <div class="metric-title" style="font-size: 1.25rem;">3. Lift (Hệ số đòn bẩy)</div>
+                      
+                      <div class="math-formula-box" style="margin: 0.3rem 0; padding: 6px 10px;">
+                        <div class="math-standard">
+                          <span style="color: #34d399; font-weight: 700;">Lift(A ⇒ B)</span>
+                          <span>=</span>
+                          <span class="math-frac">
+                            <span class="math-num">Conf(A ⇒ B)</span>
+                            <span class="math-den">Supp(B)</span>
+                          </span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #a7f3d0; background: rgba(0,0,0,0.3); padding: 3px 6px; border-radius: 4px; text-align: center; margin-top: 3px;">
+                          🎲 <strong>Gốc rễ xác suất:</strong> Tỷ số kiểm định độc lập <code>P(A ∩ B) / [P(A) × P(B)]</code>
+                        </div>
+                      </div>
+
+                      <!-- Always-visible, intuitive explanation with larger font & probability theory -->
+                      <div class="formula-rationale-box">
+                        <div class="rationale-header" style="color: #34d399;">
+                          <span>💡</span> Tại sao có công thức? (Gốc rễ Xác Suất)
+                        </div>
+                        <div class="rationale-body">
+                          • <strong>Lý thuyết xác suất:</strong> Theo định lý độc lập, hai biến cố độc lập khi <strong>P(A ∩ B) = P(A) &times; P(B) &hArr; Lift = 1</strong> (A không ảnh hưởng B).<br>
+                          • <strong>Tại sao chia tiếp Supp(B)?</strong> Để đo <strong>mức độ chệch khỏi tính độc lập P(B|A) / P(B)</strong>, bóc trần hàng bán chạy tự nhiên (Túi nilon ai cũng lấy). Lift &gt; 1 chứng minh món A thực sự <strong>kích cầu</strong> làm tăng xác suất mua B lên gấp X lần!
+                        </div>
+                      </div>
+
+                      <div class="metric-example" style="font-size: 0.9rem; line-height: 1.45; margin-bottom: 0.35rem;">
+                        🚀 <strong>Ví dụ:</strong> Supp(Tã) = 10%. Mua Bia vọt lên Conf = 50%:
+                        <br>➔ <strong style="color: #34d399;">Lift = 50% / 10% = 5.0 (Tăng gấp 5 lần so với tự nhiên!)</strong>
+                      </div>
+
+                      <!-- Visual Lift Meter -->
+                      <div class="lift-gauge" style="margin-top: 0.25rem;">
+                        <div class="lift-tier lift-tier-pos">
+                          <span class="lift-tier-title">📈 &gt; 1.0</span>
+                          <span><strong>Kích cầu:</strong> Tăng X lần</span>
+                        </div>
+                        <div class="lift-tier lift-tier-neutral">
+                          <span class="lift-tier-title">⚖️ = 1.0</span>
+                          <span><strong>Độc lập:</strong> Ngẫu nhiên</span>
+                        </div>
+                        <div class="lift-tier lift-tier-neg">
+                          <span class="lift-tier-title">📉 &lt; 1.0</span>
+                          <span><strong>Kỵ nhau:</strong> Giảm mua</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div style="background: rgba(52, 211, 153, 0.08); border-left: 3px solid var(--status-frequent); padding: 0.45rem 0.75rem; border-radius: 6px; font-size: 0.9rem; color: #d1fae5; line-height: 1.45; margin-top: 0.35rem;">
+                      💎 <strong>Mục đích:</strong> Đo lường giá trị kích cầu thực tế. Phân biệt rõ giữa kích cầu và sản phẩm bán chạy tự nhiên.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mathematical Notation Legend Bar -->
+                <div class="math-legend-bar">
+                  <div class="math-legend-header">
+                    <span>📐 Chú Giải Ký Hiệu Chuẩn Học Thuật (Agrawal 1994 &bull; Tan 2006)</span>
+                    <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: none;">Đồng nhất xuyên suốt toàn bộ bài thuyết trình</span>
+                  </div>
+                  <div class="math-legend-grid">
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">σ (Sigma)</span> Support Count</div>
+                      <div class="legend-desc">Số lượng giao dịch thực tế chứa tập món trong CSDL (ví dụ: σ(A ∪ B) = 200 đơn).</div>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">|D|</span> Database Size</div>
+                      <div class="legend-desc">Tổng số giao dịch toàn hệ thống (|D| = Total Database Transactions).</div>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">A ⇒ B</span> Chiều Gợi Ý</div>
+                      <div class="legend-desc">Nếu mua tiền đề A thì gợi ý mua tiếp B. Khác hoàn toàn chiều ngược lại B ⇒ A.</div>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">A ∪ B</span> Combo Mua Cùng</div>
+                      <div class="legend-desc">Tập hợp các món hàng cùng xuất hiện trong giỏ hàng (ví dụ: {Bia, Tã}).</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 5: THE APRIORI PRINCIPLE & ANTI-MONOTONICITY -->
+            <article class="slide" data-slide="5">
+              <header class="slide-header" style="margin-bottom: 0.75rem;">
+                <div class="slide-tag">04 • Nguyên Lý Cốt Lõi Apriori</div>
+                <h2 class="slide-title">Nguyên Lý Apriori: <span class="gradient-text">Tiên Đề Phản Đơn Điệu (Anti-monotonicity)</span></h2>
+                <p class="slide-subtitle">Bản chất toán học: Mọi tập cha chứa tập con không phổ biến đều chắc chắn bị loại bỏ.</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-2-cols" style="align-items: stretch;">
+                  <!-- Column 1: Math Foundation & Intuition -->
+                  <div class="glass-card highlight" style="display: flex; flex-direction: column; justify-content: space-between; gap: 0.85rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-frequent" style="width: fit-content; margin-bottom: 0.65rem;">Quy Tắc Trực Giác Cốt Lõi</div>
+                      <blockquote style="font-size: 1.25rem; font-weight: 800; color: #fff; line-height: 1.5; border-left: 5px solid var(--accent-primary); padding-left: 1.15rem; margin: 0 0 0.85rem;">
+                        "Nếu một tập con không phổ biến, thì bất kỳ combo cha nào chứa nó CHẮC CHẮN cũng không thể phổ biến!"
+                      </blockquote>
+                      <p style="color: var(--text-main); font-size: 1.02rem; line-height: 1.6; margin: 0;">
+                        Nếu khách hàng không mua đủ tần suất món {Trứng}, thì không có lý do gì họ lại đi mua combo {Trứng, Sữa} hay {Trứng, Bia, Bánh mì} nhiều hơn!
+                      </p>
+                    </div>
+
+                    <!-- Clear Definition of X and Y -->
+                    <div style="background: rgba(0,0,0,0.35); padding: 0.95rem 1.15rem; border-radius: 10px; border-left: 4px solid var(--accent-primary); display: flex; flex-direction: column; gap: 8px;">
+                      <div style="font-family: var(--font-mono); font-size: 1.18rem; color: #fff; font-weight: 700;">
+                        📐 &forall; X &sube; Y &rArr; Support(Y) &le; Support(X)
+                      </div>
+                      
+                      <!-- Definition Badges for X and Y -->
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.86rem;">
+                        <div style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 5px 8px; border-radius: 5px; color: #c7d2fe;">
+                          📦 <strong style="color: #fff;">X: Tập con</strong> (ví dụ: món đơn {Bia})
+                        </div>
+                        <div style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 5px 8px; border-radius: 5px; color: #c7d2fe;">
+                          🛒 <strong style="color: #fff;">Y: Tập cha</strong> (ví dụ: combo {Bia, Tã})
+                        </div>
+                      </div>
+
+                      <div style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.5; background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px;">
+                        💡 <strong>Tại sao Support(Y) &le; Support(X)?</strong><br>
+                        Bất kỳ hóa đơn nào chứa combo lớn <code>Y</code> ({Bia, Tã}) thì <strong>bắt buộc phải có</strong> món con <code>X</code> (Bia). Ngược lại, có những người mua riêng Bia mà không mua Tã. Do đó, số lần xuất hiện của combo <code>Y</code> <strong>không bao giờ có thể vượt quá</strong> món con <code>X</code>!
+                      </div>
+
+                      <div style="font-size: 0.88rem; color: #fecdd3; background: rgba(244, 63, 94, 0.12); padding: 6px 10px; border-radius: 6px; border-left: 3px solid var(--status-pruned);">
+                        ✂️ <strong>Hệ quả Vàng (Apriori Pruning):</strong> Nếu <code>Support(X) &lt; min_sup</code> thì chắc chắn <code>Support(Y) &lt; min_sup</code> &rarr; <strong>Gạch bỏ ngay tập cha Y mà không cần quét CSDL!</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Column 2: Visual Pruning Example -->
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 0.85rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-pruned" style="width: fit-content; margin-bottom: 0.65rem;">Minh Họa Tỉa Cành Thực Tế</div>
+                      <h3 style="color: #fff; margin-bottom: 0.85rem; font-size: 1.25rem;">
+                        Cắt Nhánh Tức Thì: Tiết Kiệm 95% Tính Toán
+                      </h3>
+                      
+                      <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                        <div style="display: flex; align-items: center; gap: 14px; background: rgba(244, 63, 94, 0.12); border: 1px solid var(--status-pruned-border); padding: 10px 14px; border-radius: 8px;">
+                          <span style="font-size: 2.2rem;">🥚</span>
+                          <div>
+                            <strong class="hl-red" style="font-size: 1.12rem;">{Trứng}</strong> bị loại (Support &lt; min_sup 40%)
+                            <div style="font-size: 0.9rem; color: var(--text-dim); margin-top: 2px;">Chỉ có 1 đơn hàng trong toàn bộ 7 giao dịch</div>
+                          </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); font-weight: 800; font-size: 0.98rem; letter-spacing: 0.05em; text-align: center;">
+                          ⬇ GẠCH BỎ TOÀN BỘ CÁC COMBO CHA, KHÔNG CẦN QUÉT ĐĨA!
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                          <div class="lattice-node pruned" style="position: static; font-size: 0.95rem; padding: 10px 14px; justify-content: center;">❌ {Trứng, Sữa}</div>
+                          <div class="lattice-node pruned" style="position: static; font-size: 0.95rem; padding: 10px 14px; justify-content: center;">❌ {Trứng, Bia}</div>
+                          <div class="lattice-node pruned" style="position: static; font-size: 0.95rem; padding: 10px 14px; justify-content: center;">❌ {Trứng, Bánh mì}</div>
+                          <div class="lattice-node pruned" style="position: static; font-size: 0.95rem; padding: 10px 14px; justify-content: center;">❌ {Trứng, Sữa, Bia}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="padding: 10px 14px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; font-size: 0.98rem; color: var(--status-frequent); font-weight: 700; text-align: center;">
+                      ✓ Tiết kiệm ngay hơn 95% công sức tính toán và I/O đọc đĩa cứng!
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">✂️</span>
+                  <span><strong>Bản chất hình học:</strong> Cây không gian tổ hợp (Itemset Lattice) bị cắt tỉa từ dưới lên. Một combo cha chỉ có cơ hội sống sót nếu <strong>tất cả các tập con của nó đều là tập phổ biến</strong>!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 6: SUMMARY TABLE & THE CONFIDENCE FALLACY -->
+            <article class="slide" data-slide="6">
+              <header class="slide-header">
+                <div class="slide-tag">05 • Bảng Vai Trò Bổ Trợ</div>
+                <h2 class="slide-title">Hệ Thống 3 Lớp Lọc: <span class="gradient-text">Bảng Đối Chiếu & Bóc Trần Ảo Giác</span></h2>
+                <p class="slide-subtitle">Tại sao phải kết hợp cả 3 chỉ số mới đủ cơ sở đưa ra quyết định kinh doanh chuẩn xác?</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-2-cols" style="align-items: stretch;">
+                  <!-- Left: Bảng Tổng Hợp Vai Trò Bổ Trợ (From User Image) -->
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-candidate" style="width: fit-content; margin-bottom: 0.75rem;">Bảng Tổng Hợp Vai Trò Bổ Trợ</div>
+                      <table class="metric-summary-table">
+                        <thead>
+                          <tr>
+                            <th style="width: 25%;">Chỉ số</th>
+                            <th style="width: 38%;">Trả lời câu hỏi cốt lõi</th>
+                            <th style="width: 37%;">Rủi ro nếu bỏ qua</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><strong style="color: #fbbf24;">Support</strong></td>
+                            <td>Cặp sản phẩm này có xuất hiện <em>đủ nhiều</em> không?</td>
+                            <td style="color: #f87171;">Lãng phí tài nguyên vào các trường hợp hiếm (Xe hơi + Kim cương)</td>
+                          </tr>
+                          <tr>
+                            <td><strong style="color: #818cf8;">Confidence</strong></td>
+                            <td>Nếu khách mua A, xác suất họ mua thêm B là bao nhiêu?</td>
+                            <td style="color: #f87171;">Không xác định được chiều đề xuất sản phẩm (Máy in vs Mực in)</td>
+                          </tr>
+                          <tr>
+                            <td><strong style="color: #34d399;">Lift</strong></td>
+                            <td>Mua A có <em>thực sự làm tăng cơ hội</em> mua B so với bình thường?</td>
+                            <td style="color: #f87171;">Bị đánh lừa bởi sản phẩm vốn dĩ đã bán chạy (Túi nilon, Trà & Sữa)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div style="font-size: 1.05rem; color: #e2e8f0; background: rgba(0,0,0,0.35); padding: 0.85rem 1.15rem; border-radius: 8px; border-left: 3px solid var(--status-frequent);">
+                      🎯 <strong>Tóm lược:</strong> Support lọc rác ➔ Confidence đo độ tin cậy ➔ <strong>LIFT xác nhận giá trị kinh doanh!</strong>
+                    </div>
+                  </div>
+
+                  <!-- Right: Nghịch Lý Thực Tế & Đối Chiếu Lift -->
+                  <div class="glass-card highlight" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; height: 100%;">
+                    <div>
+                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <div class="badge badge-pruned" style="width: fit-content;">Bóc Trần Ảo Giác Confidence</div>
+                        <span style="font-size: 0.9rem; color: var(--accent-cyan); font-weight: 700;">Case Study Đối Chiếu</span>
+                      </div>
+
+                      <div style="font-size: 1.12rem; color: var(--text-main); line-height: 1.6; margin-bottom: 0.75rem;">
+                        Tại sao quy luật có <strong>Confidence 90%</strong> là luật vứt đi, còn <strong>Confidence 35%</strong> lại là mỏ vàng triệu đô?
+                      </div>
+
+                      <!-- Contrast Grid: Bad vs Good -->
+                      <div class="contrast-grid">
+                        <!-- Bad: Túi Nilon -->
+                        <div class="contrast-card bad">
+                          <div style="font-weight: 800; color: #f87171; display: flex; align-items: center; gap: 6px; font-size: 1.15rem;">
+                            <span>❌</span> Luật Ảo (Túi Nilon)
+                          </div>
+                          <div style="font-family: var(--font-mono); font-size: 1.05rem; color: #cbd5e1; font-weight: 600;">
+                            [Bia] ➔ [Túi Nilon]
+                          </div>
+                          <div style="background: rgba(0,0,0,0.35); padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.98rem; line-height: 1.5;">
+                            Conf = 90% (Rất cao)<br>
+                            P(Túi) = 90% (Ai cũng lấy)<br>
+                            Lift = 90%/90% = <strong style="color: #fca5a5;">1.0 (Vô can!)</strong>
+                          </div>
+                          <div style="font-size: 0.95rem; color: #fca5a5; line-height: 1.5;">
+                            ➔ Khách mua bia hay không thì vẫn lấy túi nilon! Làm combo quảng cáo là <strong>ném tiền qua cửa sổ</strong>.
+                          </div>
+                        </div>
+
+                        <!-- Good: Bia & Tã -->
+                        <div class="contrast-card good">
+                          <div style="font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 6px; font-size: 1.15rem;">
+                            <span>💎</span> Mỏ Vàng (Bia & Tã)
+                          </div>
+                          <div style="font-family: var(--font-mono); font-size: 1.05rem; color: #cbd5e1; font-weight: 600;">
+                            [Bia] ➔ [Tã Giấy]
+                          </div>
+                          <div style="background: rgba(0,0,0,0.35); padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.98rem; line-height: 1.5;">
+                            Conf = 35% (Vừa phải)<br>
+                            P(Tã) = 10% (Bình thường)<br>
+                            Lift = 35%/10% = <strong style="color: #86efac;">3.5 (Tăng 3.5x!)</strong>
+                          </div>
+                          <div style="font-size: 0.95rem; color: #86efac; line-height: 1.5;">
+                            ➔ Nhờ có Bia, cơ hội bán Tã <strong>tăng gấp 3.5 lần</strong>! Đặt 2 quầy cạnh nhau lập tức bùng nổ doanh số.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); padding: 0.85rem 1.15rem; border-radius: 8px; font-size: 1.05rem; line-height: 1.6; color: #bae6fd;">
+                      💎 <strong>Tuyên ngôn cốt lõi:</strong> <em>Confidence đo xác suất, còn <strong>LIFT đo hiệu quả can thiệp kinh doanh</strong>. Doanh nghiệp chi tiền cho luật có Lift cao nhất!</em>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">⚖️</span>
+                  <span><strong>Nguồn gốc & Nguyên tắc thiết lập ngưỡng:</strong> <code class="hl-gold">min_sup</code> và <code class="hl-cyan">min_conf</code> là <strong>siêu tham số do chuyên gia nghiệp vụ tự đề ra</strong> dựa trên quy mô dữ liệu và bài toán kinh doanh. Với Big Data triệu đơn, đặt <strong class="hl-gold">min_sup</strong> thấp (0.5% - 2%) để không sót cơ hội, <strong class="hl-cyan">min_conf</strong> (50% - 70%), và <strong>chỉ hành động khi <span class="hl-green">Lift &gt; 1.25</span></strong> (chứng minh có hiệu ứng kích cầu thực)!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 7: JOIN & PRUNE STEPS -->
+            <article class="slide" data-slide="7">
+              <header class="slide-header" style="margin-bottom: 0.65rem;">
+                <div class="slide-tag">06 • Chi Tiết Thuật Toán</div>
+                <h2 class="slide-title">Vòng Lặp Thông Minh: <span class="gradient-text">Ghép Cặp (Join) & Tỉa Cành (Prune)</span></h2>
+                <p class="slide-subtitle">Sinh dần combo từ nhỏ đến lớn: Kết hợp phép ghép có điều kiện và tiên đề tỉa nhánh triệt để.</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-2-cols" style="align-items: stretch;">
+                  <!-- Step 1: Join -->
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 0.75rem; height: 100%;">
+                    <div>
+                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+                        <span class="badge badge-candidate">BƯỚC 1 • GHÉP NỐI</span>
+                        <span style="font-size: 1.3rem;">⨝</span>
+                      </div>
+                      <h3 style="color: #fff; margin-bottom: 0.4rem; font-size: 1.22rem;">
+                        Ghép Ứng Viên (<code class="math-term">L<sub>k-1</sub> ⨝ L<sub>k-1</sub> &rarr; C<sub>k</sub></code>)
+                      </h3>
+                      <p style="color: var(--text-main); line-height: 1.55; font-size: 0.98rem; margin-bottom: 0.5rem;">
+                        Sắp xếp các mặt hàng theo thứ tự từ điển (A &rarr; Z). Hai tập <code class="math-term">L<sub>k-1</sub></code> chỉ được ghép lại với nhau khi chúng <strong>trùng nhau đúng <code class="math-term">k - 2</code> món đầu tiên</strong>, chỉ khác nhau món cuối cùng!
+                      </p>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.35); padding: 0.85rem 1.15rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.95rem; color: #a5b4fc; border-left: 4px solid var(--accent-primary); line-height: 1.55;">
+                      <div style="color: #94a3b8; font-size: 0.82rem; margin-bottom: 4px;">Ví dụ sinh combo 3 món (<code class="math-term">k = 3</code>, trùng <code class="math-term">k-2 = 1</code> món đầu):</div>
+                      <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <div>&bull; Tập 1: [ <strong style="color: #38bdf8;">Bia</strong>, Bơ ] &isin; L<sub>2</sub></div>
+                        <div>&bull; Tập 2: [ <strong style="color: #38bdf8;">Bia</strong>, Sữa ] &isin; L<sub>2</sub> (Cùng chung <em>Bia</em>)</div>
+                        <div style="margin-top: 4px; padding-top: 4px; border-top: 1px dashed rgba(255,255,255,0.15); color: #34d399;">
+                          ➔ Sinh ứng viên mới: <strong>[ Bia, Bơ, Sữa ] &isin; C<sub>3</sub></strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Step 2: Prune -->
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 0.75rem; height: 100%;">
+                    <div>
+                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+                        <span class="badge badge-pruned">BƯỚC 2 • TỈA CÀNH</span>
+                        <span style="font-size: 1.3rem;">✂️</span>
+                      </div>
+                      <h3 style="color: #fff; margin-bottom: 0.4rem; font-size: 1.22rem;">
+                        Tỉa Nhánh Tức Thì (Kiểm Tra Tập Con)
+                      </h3>
+                      <p style="color: var(--text-main); line-height: 1.55; font-size: 0.98rem; margin-bottom: 0.5rem;">
+                        <strong>Chưa vội quét CSDL!</strong> Để ứng viên 3 món sống sót, <strong>TẤT CẢ 3 tập con 2 món</strong> của nó đều phải nằm trong danh sách <code class="math-term">L<sub>2</sub></code> (đã là tập phổ biến).
+                      </p>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.35); padding: 0.85rem 1.15rem; border-radius: 8px; border-left: 4px solid var(--status-pruned); display: flex; flex-direction: column; gap: 6px;">
+                      <div style="color: #fca5a5; font-weight: 700; font-size: 0.88rem;">Kiểm tra 3 tập con của [ Bia, Bơ, Sữa ]:</div>
+                      
+                      <div class="prune-checklist">
+                        <div class="prune-checklist-item pass">
+                          <span>1. [ Bia, Bơ ] &isin; L<sub>2</sub></span>
+                          <span>✓ ĐẠT (Đã phổ biến)</span>
+                        </div>
+                        <div class="prune-checklist-item pass">
+                          <span>2. [ Bia, Sữa ] &isin; L<sub>2</sub></span>
+                          <span>✓ ĐẠT (Đã phổ biến)</span>
+                        </div>
+                        <div class="prune-checklist-item fail">
+                          <span>3. [ Bơ, Sữa ] &notin; L<sub>2</sub></span>
+                          <span>✗ BỊ LOẠI Ở VÒNG TRƯỚC!</span>
+                        </div>
+                      </div>
+
+                      <div style="font-size: 0.85rem; color: #fecdd3; background: rgba(244, 63, 94, 0.15); padding: 4px 8px; border-radius: 4px; text-align: center;">
+                        ➔ <strong>KẾT LUẬN: GẠCH BỎ NGAY [ Bia, Bơ, Sữa ]</strong>, không tốn công đọc đĩa CSDL!
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mathematical Notation Legend for Slide 7 -->
+                <div class="math-legend-bar">
+                  <div class="math-legend-header">
+                    <span>📐 Chú Giải Thuật Ngữ Vòng Lặp Apriori</span>
+                    <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: none;">Chuẩn Rakesh Agrawal</span>
+                  </div>
+                  <div class="math-legend-grid">
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">L<sub>k</sub></span> Large / Frequent Itemsets</div>
+                      <div class="legend-desc">Tập các combo gồm <code class="math-term">k</code> món có Support &ge; min_sup (đã qua thẩm định).</div>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">C<sub>k</sub></span> Candidate Itemsets</div>
+                      <div class="legend-desc">Tập các combo ứng viên tiềm năng kích thước <code class="math-term">k</code> sinh ra sau bước ghép cặp.</div>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">⨝ (Join)</span> Phép Ghép Có Điều Kiện</div>
+                      <div class="legend-desc">Chỉ ghép 2 tập <code class="math-term">L<sub>k-1</sub></code> khi chúng trùng nhau đúng <code class="math-term">k - 2</code> món đầu.</div>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-sym"><span class="sym-pill">Prune</span> Tỉa Nhánh Khai Tử</div>
+                      <div class="legend-desc">Loại bỏ trước ứng viên vô vọng mà không cần tốn một vòng quét đĩa CSDL nào.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">💡</span>
+                  <span><strong>Kỹ thuật Agrawal:</strong> Sắp xếp các món hàng theo thứ tự từ điển (A &rarr; Z) trước khi ghép cặp giúp <strong>loại bỏ 100% khả năng sinh trùng lặp ứng viên</strong> và giảm hơn 80% phép duyệt thử!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 8: MINING ASSOCIATION RULES -->
+            <article class="slide" data-slide="8">
+              <header class="slide-header">
+                <div class="slide-tag">07 • Ra Quyết Định</div>
+                <h2 class="slide-title">Từ Dữ Liệu <span class="gradient-text">Biến Thành Doanh Thu</span></h2>
+                <p class="slide-subtitle">Biến quy luật A ➔ B thành tiền và trải nghiệm khách hàng xuất sắc.</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-2-cols" style="align-items: stretch;">
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-rule" style="width: fit-content; margin-bottom: 0.75rem;">Tiêu Chuẩn Lọc Luật Hợp Lệ</div>
+                      <h3 style="color: #fff; margin-bottom: 0.75rem;">
+                        Công Thức Sinh Quy Tắc
+                      </h3>
+                      <p style="color: var(--text-main); line-height: 1.7; font-size: 1.15rem; margin-bottom: 1rem;">
+                        Từ mỗi tập phổ biến <code class="math-term">A &cup; B &isin; L<sub>k</sub></code> (ví dụ: {Bia, Tã}), ta sinh quy tắc gợi ý mua tiền đề <strong class="hl-cyan">A</strong> kéo theo hệ quả <strong class="hl-gold">B</strong> (<code class="math-term">A &rArr; B</code>).
+                      </p>
+
+                      <div class="math-formula-box" style="margin: 0 0 1rem;">
+                        <div class="math-standard">
+                          <span style="color: #818cf8; font-weight: 700;">Conf(A ⇒ B)</span>
+                          <span>=</span>
+                          <span class="math-frac">
+                            <span class="math-num">Supp(A ∪ B)</span>
+                            <span class="math-den">Supp(A)</span>
+                          </span>
+                          <span style="color: #34d399; font-weight: 700;">&ge; min_conf</span>
+                        </div>
+                        <div class="math-standard" style="border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 6px;">
+                          <span style="color: #34d399; font-weight: 700;">Lift(A ⇒ B)</span>
+                          <span>=</span>
+                          <span class="math-frac">
+                            <span class="math-num">Conf(A ⇒ B)</span>
+                            <span class="math-den">Supp(B)</span>
+                          </span>
+                          <span style="color: #fbbf24; font-weight: 700;">&gt; 1.0 (Kích cầu thực)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ul style="padding-left: 1.25rem; color: var(--text-main); font-size: 1.1rem; line-height: 1.8; margin: 0;">
+                      <li><strong class="hl-cyan">Confidence &ge; min_conf:</strong> Đảm bảo hành động gợi ý có xác suất thành công cao.</li>
+                      <li><strong class="hl-green">Lift &gt; 1.0:</strong> Đảm bảo hai món thực sự kéo doanh số của nhau, không phải mua trùng hợp.</li>
+                    </ul>
+                  </div>
+
+                  <div class="glass-card highlight" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; height: 100%;">
+                    <div>
+                      <div class="badge badge-frequent" style="width: fit-content; margin-bottom: 0.75rem;">3 Ứng Dụng Thực Chiến Doanh Thu Triệu Đô</div>
+                      <h3 style="color: #fff; margin-bottom: 1rem;">
+                        Triển Khai Trong Vận Hành
+                      </h3>
+                      <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: rgba(255,255,255,0.04); padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--accent-gold); font-size: 1.1rem; line-height: 1.65;">
+                          🛒 <strong class="hl-gold">Bố Trí Kệ Siêu Thị (Cross-Merchandising):</strong> Đặt hai mặt hàng có Lift cao cạnh nhau hoặc trên cùng lối đi chính để tăng tỷ lệ tiện tay bỏ thêm vào giỏ.
+                        </div>
+                        <div style="background: rgba(255,255,255,0.04); padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--accent-cyan); font-size: 1.1rem; line-height: 1.65;">
+                          🎁 <strong class="hl-cyan">Đóng Gói Combo & Flash Sale:</strong> Giảm giá nhẹ 5% khi mua cả cặp để thanh lý hàng tồn và tăng giá trị đơn hàng trung bình (AOV).
+                        </div>
+                        <div style="background: rgba(255,255,255,0.04); padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--status-frequent); font-size: 1.1rem; line-height: 1.65;">
+                          📱 <strong class="hl-green">Recommender System (E-Commerce):</strong> Tự động đẩy widget <em>"Thường được mua cùng nhau"</em> ở trang thanh toán khi khách vừa cho sản phẩm A vào giỏ hàng.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">💰</span>
+                  <span><strong>Chiến lược ROI trong bán lẻ:</strong> Không áp dụng mù quáng mọi luật! Siêu thị kết hợp Lift với <strong>biên lợi nhuận (Profit Margin)</strong>: giữ nguyên giá sản phẩm bán chạy A, tặng kèm voucher giảm giá cho sản phẩm đính kèm B có biên lợi nhuận cao (phụ kiện, nước giải khát) để bùng nổ lợi nhuận ròng!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 9: INTERACTIVE LIVE DEMO TRANSITION -->
+            <article class="slide hero-slide" data-slide="9">
+              <div class="hero-pill">
+                <span>⚡</span> Khám Phá Trực Quan
+              </div>
+              <h2 class="hero-title" style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem; text-align: center;">
+                <span style="font-size: 0.8em; opacity: 0.95;">Xem Thuật Toán Vận Hành</span>
+                <span class="glow">Live Simulator Trực Quan</span>
+              </h2>
+              <p class="hero-desc" style="max-width: 760px;">
+                "Lý thuyết đã rõ ràng! Hãy cùng theo dõi thuật toán Apriori tự động quét từng dòng giao dịch, ghép cặp combo, vung nhát kéo tỉa cành và sinh quy tắc gợi ý theo thời gian thực."
+              </p>
+
+              <div class="hero-features" style="margin-bottom: 1.5rem;">
+                <div class="hero-feature-item">
+                  <span>🎬</span> Mô phỏng từng bước (Step-by-Step)
+                </div>
+                <div class="hero-feature-item">
+                  <span>✂️</span> Đồ thị tỉa nhánh Lattice trực quan
+                </div>
+                <div class="hero-feature-item">
+                  <span>🎛️</span> Tùy biến ngưỡng min_sup & min_conf
+                </div>
+              </div>
+
+              <div class="slide-cta-group">
+                <button class="hero-start-btn slide-cta-primary" onclick="window.App?.switchView('simulator')">
+                  ⚡ Mở Trình Mô Phỏng Ngay
+                </button>
+                <button class="nav-arrow-btn slide-cta-secondary" onclick="window.presentationController?.nextSlide()">
+                  Tiếp Tục Xem Slide ➔
+                </button>
+              </div>
+
+              <div style="margin-top: 1.75rem; color: var(--text-dim); font-size: 0.92rem;">
+                💡 Mẹo trình chiếu: Bấm phím <code style="color: var(--accent-cyan); font-weight: bold;">D</code> bất cứ lúc nào để chuyển đổi tức thì giữa Slide và Bộ mô phỏng.
+              </div>
+            </article>
+
+            <!-- SLIDE 10: PROS, CONS & MODERN SUCCESSORS -->
+            <article class="slide" data-slide="10">
+              <header class="slide-header">
+                <div class="slide-tag">08 • Nhìn Lại Thuật Toán</div>
+                <h2 class="slide-title">Ưu Điểm, Giới Hạn & <span class="gradient-text">Bước Tiến Kế Thừa</span></h2>
+                <p class="slide-subtitle">Không có thuật toán nào hoàn hảo: Từ nền tảng Apriori đến bước nhảy vọt FP-Growth.</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-3-cols" style="align-items: stretch;">
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;">
+                    <div>
+                      <h3 style="color: #34d399; display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;">
+                        <span>✓</span> Điểm Sáng Nền Tảng
+                      </h3>
+                      <ul style="padding-left: 1.25rem; color: var(--text-main); font-size: 1.1rem; line-height: 1.8; margin: 0;">
+                        <li><strong class="hl-green">Triết lý tỉa cành xuất sắc:</strong> Khai tử toàn bộ không gian tổ hợp vô ích trước khi quét đĩa.</li>
+                        <li><strong class="hl-cyan">Dễ diễn giải (Explainable):</strong> Luật sinh ra dạng <em>Nếu A thì B</em>, ban giám đốc và kinh doanh hiểu được ngay.</li>
+                        <li><strong class="hl-gold">Di sản học thuật:</strong> Nền tảng kinh điển của Data Mining (Agrawal & Srikant 1994, trích dẫn &gt;25,000 lần).</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;">
+                    <div>
+                      <h3 style="color: #f87171; display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;">
+                        <span>⚠️</span> Hai Điểm Nghẽn Lớn
+                      </h3>
+                      <ul style="padding-left: 1.25rem; color: var(--text-main); font-size: 1.1rem; line-height: 1.8; margin: 0;">
+                        <li><strong class="hl-red">Nghẽn đọc đĩa (I/O Bottleneck):</strong> Phải quét lại toàn bộ CSDL <code class="math-term">k</code> lần (tìm combo 10 món = 10 lần quét toàn bộ đĩa cứng).</li>
+                        <li><strong class="hl-red">Bùng nổ ứng viên (<code class="math-term">C<sub>k</sub></code>):</strong> Với 10.000 sản phẩm, <code class="math-term">C<sub>2</sub></code> có tới <code class="math-term">&approx; 5 &times; 10<sup>7</sup></code> cặp cần đếm, dễ làm tràn RAM.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="glass-card highlight" style="display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; border-color: rgba(56, 189, 248, 0.4);">
+                    <div>
+                      <div style="margin-bottom: 0.85rem;">
+                        <h3 style="color: var(--accent-cyan); margin: 0 0 0.45rem 0; white-space: nowrap;">
+                          🚀 Kế Thừa: FP-Growth
+                        </h3>
+                        <span class="badge badge-candidate" style="font-size: 0.8rem; display: inline-block;">📌 Nghiên Cứu Mở Rộng</span>
+                      </div>
+                      
+                      <div style="font-size: 1.1rem; color: var(--text-main); line-height: 1.6; margin-bottom: 0.75rem;">
+                        Khắc phục triệt để bằng cấu trúc <strong>FP-Tree (Frequent Pattern Tree)</strong>:
+                      </div>
+
+                      <div style="background: rgba(0,0,0,0.35); padding: 1rem 1.25rem; border-radius: 10px; font-size: 1.05rem; line-height: 1.7; color: #cbd5e1; border-left: 4px solid var(--accent-cyan);">
+                        • <strong>Chỉ quét CSDL đúng 2 lần:</strong> Lần 1 đếm 1-item; Lần 2 nén giao dịch vào cây tiền tố (Prefix-tree).<br>
+                        • <strong>Không sinh ứng viên:</strong> Dùng đệ quy <em>Chia để trị</em> (Divide & Conquer) đào trên cây.<br>
+                        • <strong>Hiệu năng:</strong> Nhanh hơn Apriori từ <strong>10x đến 100x</strong>!
+                      </div>
+                    </div>
+
+                    <div style="font-size: 1rem; color: #94a3b8; background: rgba(56, 189, 248, 0.08); padding: 0.65rem 0.85rem; border-radius: 8px;">
+                      💡 <em>Apriori dạy chúng ta bản chất tỉa cành & xác suất; FP-Growth dạy chúng ta cách tối ưu cấu trúc dữ liệu.</em>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide-pro-tip">
+                  <span class="slide-pro-tip-icon">🧭</span>
+                  <span><strong>Bức tranh tiến hóa thuật toán:</strong> <strong>Apriori (1994)</strong> đặt nền móng tư duy tỉa nhánh &rarr; <strong>FP-Growth (2000)</strong> tối ưu nén cấu trúc cây &rarr; <strong>Spark MLlib FPGrowth</strong> xử lý phân tán Big Data ngày nay. Nắm chắc Apriori là chìa khóa mở toang cánh cửa vào các hệ thống gợi ý hiện đại!</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 11: KEY TAKEAWAYS & CONCLUSION -->
+            <article class="slide" data-slide="11">
+              <header class="slide-header">
+                <div class="slide-tag">09 • Tổng Kết & Đúc Kết</div>
+                <h2 class="slide-title">3 Bài Học Lớn <span class="gradient-text">Từ Thuật Toán Apriori</span></h2>
+                <p class="slide-subtitle">Những giá trị cốt lõi đọng lại sau buổi thuyết trình: Tư duy thuật toán, thước đo dữ liệu và ứng dụng thực tiễn.</p>
+              </header>
+
+              <div class="slide-body">
+                <div class="grid-3-cols" style="align-items: stretch;">
+                  <!-- Card 1: Tư duy thuật toán -->
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                      <div class="badge badge-pruned" style="width: fit-content; margin-bottom: 0.75rem;">BÀI HỌC 1 • TƯ DUY THUẬT TOÁN</div>
+                      <h3 style="color: #fff; margin-bottom: 0.75rem;">
+                        ✂️ Tỉa Nhánh Từ Gốc
+                      </h3>
+                      <p style="color: var(--text-main); font-size: 1.1rem; line-height: 1.7; margin-bottom: 0.75rem;">
+                        Đừng bao giờ duyệt vét cạn (Brute-force) trong không gian bùng nổ số mũ <code class="math-term">2ᵈ - 1</code>.
+                      </p>
+                      <div style="background: rgba(244, 63, 94, 0.08); border-left: 3px solid var(--status-pruned); padding: 0.85rem 1rem; border-radius: 6px; font-size: 1rem; color: #fecdd3; line-height: 1.6;">
+                        • <strong>Anti-monotonicity:</strong> Tập con không phổ biến &rArr; Tập cha chắc chắn không phổ biến.<br>
+                        • <strong>Hiệu quả:</strong> Cắt bỏ ngay 99% tổ hợp vô vọng trước khi tốn tài nguyên quét đĩa CSDL.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 2: Tư duy số liệu -->
+                  <div class="glass-card highlight" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; border-color: rgba(52, 211, 153, 0.4);">
+                    <div>
+                      <div class="badge badge-frequent" style="width: fit-content; margin-bottom: 0.75rem;">BÀI HỌC 2 • BỘ LỌC DỮ LIỆU</div>
+                      <h3 style="color: var(--status-frequent); margin-bottom: 0.75rem;">
+                        🎯 Bộ 3 Thước Đo Vàng
+                      </h3>
+                      <p style="color: var(--text-main); font-size: 1.1rem; line-height: 1.7; margin-bottom: 0.75rem;">
+                        Không bao giờ tin tưởng mù quáng vào Confidence cao nếu chưa kiểm chứng với Lift.
+                      </p>
+                      <div style="background: rgba(52, 211, 153, 0.08); border-left: 3px solid var(--status-frequent); padding: 0.85rem 1rem; border-radius: 6px; font-size: 1rem; color: #d1fae5; line-height: 1.6;">
+                        • <strong>Support:</strong> Lọc rác &amp; nhiễu ngẫu nhiên.<br>
+                        • <strong>Confidence:</strong> Định hướng gợi ý (A &rArr; B).<br>
+                        • <strong>LIFT:</strong> Khẳng định giá trị kích cầu thực sự (chống bẫy "Túi Nilon").
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 3: Giá trị thực tiễn & Kế thừa -->
+                  <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                      <div class="badge badge-candidate" style="width: fit-content; margin-bottom: 0.75rem;">BÀI HỌC 3 • THỰC TIỄN & KẾ THỪA</div>
+                      <h3 style="color: var(--accent-cyan); margin-bottom: 0.75rem;">
+                        🚀 Kim Chỉ Nam Cho AI Gợi Ý
+                      </h3>
+                      <p style="color: var(--text-main); font-size: 1.1rem; line-height: 1.7; margin-bottom: 0.75rem;">
+                        Apriori đặt nền móng tư duy cho các hệ thống gợi ý và tối ưu hóa doanh thu bán lẻ.
+                      </p>
+                      <div style="background: rgba(56, 189, 248, 0.08); border-left: 3px solid var(--accent-cyan); padding: 0.85rem 1rem; border-radius: 6px; font-size: 1rem; color: #bae6fd; line-height: 1.6;">
+                        • <strong>Di sản:</strong> Dạy chúng ta cách lọc dữ liệu và tư duy kết hợp trước khi cần đến Machine Learning phức tạp.<br>
+                        • <strong>Kế thừa:</strong> FP-Growth và Spark MLlib mở rộng xử lý Big Data triệu giao dịch.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Action Bar for Q&A -->
+                <div class="slide-pro-tip" style="margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="slide-pro-tip-icon">🎓</span>
+                    <span style="font-size: 1.05rem;"><strong>Cảm ơn Thầy Cô và các bạn đã theo dõi!</strong> Sẵn sàng bước vào phần Thảo luận &amp; Q&amp;A.</span>
+                  </div>
+                  <div style="display: flex; gap: 0.75rem;">
+                    <button class="nav-arrow-btn" style="padding: 8px 16px; font-size: 0.95rem;" onclick="window.presentationController?.goToSlide(0)">
+                      ↺ Xem Lại Từ Đầu
+                    </button>
+                    <button class="hero-start-btn" style="padding: 8px 20px; font-size: 0.95rem;" onclick="window.App?.switchView('simulator')">
+                      ⚡ Mở Demo (Phím D)
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Bottom Slide Deck Controller -->
+          <footer class="slide-controls">
+            <div class="controls-left">
+              <div class="slide-counter">
+                <span class="current" id="slide-counter-current">1</span> / <span id="slide-counter-total">11</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="slide-progress-fill" style="width: 10%;"></div>
+              </div>
+            </div>
+
+            <div class="controls-center">
+              <button class="nav-arrow-btn" id="btn-slide-prev">
+                <span>←</span> Trước
+              </button>
+              <button class="nav-arrow-btn" id="btn-slide-next">
+                Sau <span>→</span>
+              </button>
+            </div>
+
+            <div class="controls-right" style="display: flex; align-items: center; gap: 8px;">
+              <button class="nav-arrow-btn" style="padding: 4px 10px; font-size: 0.8rem; border-color: rgba(99,102,241,0.4); color: #a5b4fc;" onclick="document.getElementById('modal-math-glossary').classList.add('open')" title="Tra cứu Bảng Quy Ước Ký Hiệu Chuẩn">
+                <span>📐 Ký Hiệu Chuẩn</span>
+              </button>
+              <div class="key-hint">
+                <span class="kbd">Space</span> / <span class="kbd">←</span> <span class="kbd">→</span>
+              </div>
+            </div>
+          </footer>
+
+          <!-- Speaker Notes Drawer -->
+          <aside class="notes-drawer" id="notes-drawer">
+            <div class="notes-header">
+              <div class="notes-title" id="notes-title">🎙️ Ghi chú người thuyết trình</div>
+              <button class="modal-close-btn" onclick="document.getElementById('notes-drawer').classList.remove('open'); if(window.presentationController) window.presentationController.isNotesOpen = false;">✕</button>
+            </div>
+            <div class="notes-content" id="notes-content">
+              Ghi chú sẽ hiển thị tương ứng với từng slide.
+            </div>
+          </aside>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VIEW 2: LIVE SIMULATOR WORKBENCH
+           =================================================================== -->
+      <section id="simulator-view" class="simulator-container" style="display: none;">
+        
+        <!-- Parameter & Stepper Bar -->
+        <div class="sim-controls-bar">
+          <div class="sim-params-group">
+            <div class="param-item">
+              <div class="param-label" title="Ngưỡng hỗ trợ tối thiểu (min_sup): Tần suất xuất hiện tối thiểu để giữ lại món hàng hoặc combo">
+                <span>Ngưỡng Hỗ Trợ (min_sup)</span>
+                <span class="param-val-badge" id="min-supp-val">40%</span>
+              </div>
+              <input type="range" id="min-supp-slider" class="slider-input" min="10" max="90" step="5" value="40">
+            </div>
+
+            <div class="param-item">
+              <div class="param-label" title="Ngưỡng tin cậy tối thiểu (min_conf): Tỷ lệ tin cậy tối thiểu để chấp thuận quy luật gợi ý">
+                <span>Ngưỡng Tin Cậy (min_conf)</span>
+                <span class="param-val-badge" id="min-conf-val">60%</span>
+              </div>
+              <input type="range" id="min-conf-slider" class="slider-input" min="20" max="95" step="5" value="60">
+            </div>
+
+            <div class="param-item">
+              <div class="param-label">
+                <span>Tốc độ</span>
+              </div>
+              <select id="sim-speed-select" class="nav-arrow-btn" style="padding: 3px 8px;">
+                <option value="0.5">0.5x (Chậm)</option>
+                <option value="1" selected>1.0x (Chuẩn)</option>
+                <option value="1.5">1.5x (Nhanh)</option>
+                <option value="2">2.0x (Rất nhanh)</option>
+              </select>
+            </div>
+
+            <button id="btn-open-theory" class="sim-btn" style="border-color: rgba(6, 182, 212, 0.4); color: var(--accent-cyan);" onclick="document.getElementById('modal-theory').classList.add('open')" title="Xem cơ sở lý thuyết Stanford CS246 & Giáo trình Data Mining">
+              <span>📚</span> Chuẩn Lý Thuyết
+            </button>
+          </div>
+
+          <!-- Playback Controls -->
+          <div class="sim-playback-group">
+            <button id="sim-btn-prev" class="sim-btn" title="Lùi 1 bước">
+              <span>⏮</span> Lùi
+            </button>
+            <button id="sim-btn-play" class="sim-btn sim-btn-primary">
+              <span>▶</span> Tự động
+            </button>
+            <button id="sim-btn-next" class="sim-btn" title="Tới 1 bước">
+              <span>⏭</span> Tiếp
+            </button>
+            <button id="sim-btn-end" class="sim-btn" title="Chạy nhanh đến kết quả cuối cùng">
+              <span>⚡</span> Đến hết
+            </button>
+            <button id="sim-btn-reset" class="sim-btn" title="Đặt lại từ đầu">
+              <span>↺</span> Đặt lại
+            </button>
+
+            <div class="step-status-indicator">
+              <div class="step-indicator-dot" id="step-indicator-dot"></div>
+              <span id="step-indicator-text" style="font-family: var(--font-mono); font-size: 0.8rem;">Sẵn sàng</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Simulator Grid -->
+        <div class="sim-grid">
+          
+          <!-- Column 1: Transaction Database -->
+          <div class="sim-panel">
+            <div class="sim-panel-header">
+              <div class="sim-panel-title">
+                <span>🛒</span> Cơ Sở Dữ Liệu Giao Dịch
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span class="badge" id="total-tx-badge" style="background: rgba(255,255,255,0.06);">7 giao dịch</span>
+                <button id="btn-toggle-quick-add" class="quick-add-toggle-btn active" title="Bật / Ẩn thanh thêm đơn nhanh">
+                  <span id="quick-add-toggle-icon">−</span> <span id="quick-add-toggle-text">Thu gọn</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Add Control Box (Chọn món và tạo đơn tùy chỉnh) -->
+            <div id="quick-add-container" class="quick-add-container">
+              <div class="quick-add-top-row">
+                <span class="quick-add-label">⚡ Chọn món để tạo giỏ hàng mới:</span>
+                <span style="font-size: 0.72rem; color: var(--text-dim);">(Click chọn / bỏ món)</span>
+              </div>
+
+              <!-- Clickable Item Badges -->
+              <div id="quick-add-chips-container" class="quick-add-chips-container">
+                <!-- Rendered dynamically from current dataset itemMeta -->
+              </div>
+
+              <!-- New custom item input (in case user wants to type a custom item) -->
+              <div class="quick-add-new-item-row">
+                <input type="text" id="quick-add-custom-input" class="quick-add-input" placeholder="+ Nhập tên món khác ngoài danh sách (Enter)..." maxlength="20" />
+                <button id="btn-add-custom-item" class="btn-add-custom-item" title="Thêm mặt hàng mới vào danh mục">+ Thêm</button>
+              </div>
+
+              <!-- Full-Width Primary Submit Button -->
+              <button id="btn-submit-quick-add" class="btn-quick-add-submit" title="Thêm đơn hàng này vào đầu CSDL">
+                <span>➕ Thêm Đơn <strong id="quick-add-next-tid" style="font-family: var(--font-mono);">T800</strong> Theo Món Đã Chọn</span>
+                <span id="quick-add-count-tag" class="quick-add-count-tag">0 món</span>
+              </button>
+            </div>
+
+            <div class="sim-panel-content">
+              <!-- Subheader Bar for Dataset with Random & Reset Buttons -->
+              <div class="tx-list-subbar">
+                <div class="tx-list-subbar-left">
+                  <span>🛒 Đơn hàng (Mới nhất ở đầu):</span>
+                </div>
+                <div class="tx-list-subbar-right">
+                  <button id="btn-random-quick-add" class="btn-dataset-action btn-random" title="Bốc ngẫu nhiên 2-3 món và tạo đơn ngay trên đầu">
+                    <span>🎲</span> Bốc ngẫu nhiên
+                  </button>
+                  <button id="btn-reset-dataset" class="btn-dataset-action btn-reset" title="Khôi phục CSDL mẫu ban đầu của kịch bản">
+                    <span>🔄</span> Đặt lại mẫu
+                  </button>
+                </div>
+              </div>
+              <div class="transaction-list" id="transactions-list">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Step Visualizer & Candidate Pool -->
+          <div class="sim-panel" style="flex: 1.4;">
+            <div class="sim-panel-header">
+              <div class="sim-panel-title">
+                <span>🔬</span> Quá Trình Quét & Tỉa Nhánh
+              </div>
+              <span class="badge badge-candidate" id="current-scenario-badge">Siêu thị bán lẻ</span>
+            </div>
+
+            <div class="sim-panel-content">
+              <!-- Step Inspector & Live Explainer -->
+              <div class="step-inspector-card" id="step-inspector-card">
+                <div class="inspector-header">
+                  <div class="inspector-phase-badge" id="inspector-phase-badge">
+                    <span class="inspector-pulse-dot"></span>
+                    <span id="inspector-phase-title">KHỞI ĐỘNG THUẬT TOÁN</span>
+                  </div>
+                  <span class="badge" id="inspector-k-badge" style="background: rgba(255,255,255,0.08); font-size: 0.75rem;">k = 1</span>
+                </div>
+
+                <div class="inspector-action-row">
+                  <span class="inspector-tag">Hành động:</span>
+                  <span class="inspector-action-text" id="inspector-action-text">Đang chờ lệnh bắt đầu...</span>
+                </div>
+
+                <!-- Floating Insight Callout ("Float Message" requested by user) -->
+                <div class="inspector-insight-bubble" id="inspector-insight-bubble">
+                  <div class="bubble-header">
+                    <span class="bubble-icon">💡</span>
+                    <strong id="bubble-why-title">Bản chất bước này (Tại sao làm vậy?):</strong>
+                  </div>
+                  <div class="bubble-text" id="bubble-why-detail">
+                    Bấm <strong>"Tiếp"</strong> hoặc <strong>"Tự động"</strong> để thuật toán bắt đầu duyệt qua từng giỏ hàng và đếm tần số xuất hiện của các món đồ lẻ trong C₁.
+                  </div>
+                </div>
+
+                <!-- Dynamic Math Formula Box -->
+                <div class="inspector-math-bar" id="inspector-math-bar">
+                  <div class="math-formula-display" id="inspector-math-display">
+                    Công thức: <span style="color: var(--accent-cyan);">Support = count / |D|</span> • Ngưỡng cần: <span style="color: #fbbf24;">≥ 40%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Discovered Frequent Itemsets Bar -->
+              <div>
+                <div class="section-subheading" style="margin-bottom: 0.4rem;">
+                  <span>Tập phổ biến đã tìm thấy (L_k):</span>
+                </div>
+                <div id="frequent-pills-container" style="display: flex; flex-wrap: wrap; gap: 5px; min-height: 28px;">
+                  <span style="color: var(--text-dim); font-size: 0.8rem;">Chưa có</span>
+                </div>
+              </div>
+
+              <!-- Candidate Pool Grid -->
+              <div class="candidate-grid-section">
+                <div class="section-subheading">
+                  <span>Tập ứng viên đang xét (C_k):</span>
+                </div>
+                <div class="itemset-cards-grid" id="candidates-grid">
+                  <!-- Injected via visualizer -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3: Switchable Tabs: Execution Log vs Discovered Rules -->
+          <div class="sim-panel" id="sim-panel-right">
+            <div class="sim-panel-header" style="padding: 6px 10px;">
+              <div class="panel-tab-switcher">
+                <button id="tab-btn-log" class="panel-tab-btn active" onclick="(window.simulatorVisualizer || window.visualizer)?.switchRightPanelTab('log')">
+                  <span>⚡ Nhật Ký Thực Thi</span>
+                  <span class="tab-pulse-indicator"></span>
+                </button>
+                <button id="tab-btn-rules" class="panel-tab-btn" onclick="(window.simulatorVisualizer || window.visualizer)?.switchRightPanelTab('rules')">
+                  <span>🎯 Luật Khai Phá</span>
+                  <span id="tab-rules-count-badge" class="badge badge-rule" style="font-size: 0.72rem; padding: 1px 6px;">0</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="sim-panel-content" style="display: flex; flex-direction: column; height: calc(100% - 48px); padding: 0.75rem;">
+              
+              <!-- Tab Pane 1: Execution Log Console (Active by default while running) -->
+              <div id="pane-execution-log" class="panel-tab-pane" style="display: flex;">
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 2px;">
+                  <span>Tiến trình ghi nhận từng thao tác thời gian thực:</span>
+                  <button class="nav-arrow-btn" style="padding: 2px 8px; font-size: 0.7rem;" onclick="(window.simulatorVisualizer || window.visualizer)?.clearLog();">Xóa log</button>
+                </div>
+                <div class="log-console" id="log-console">
+                  <!-- Logs -->
+                </div>
+              </div>
+
+              <!-- Tab Pane 2: Association Rules (Auto-switches on completion) -->
+              <div id="pane-association-rules" class="panel-tab-pane" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 2px;">
+                  <span>Các quy luật đạt ngưỡng (Confidence ≥ Min Conf):</span>
+                  <span class="badge badge-frequent" style="font-size: 0.7rem;">Sắp xếp theo Lift</span>
+                </div>
+                <div class="rules-list" id="rules-list">
+                  <!-- Rules injected via visualizer -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       MODALS & OVERLAYS
+       =================================================================== -->
+
+  <!-- Slide Overview Modal -->
+  <div class="modal-overlay" id="modal-overview">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>📑</span> Tổng Quan Tất Cả 11 Slide
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-overview').classList.remove('open')">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        Nhấp chuột vào bất kỳ slide nào để nhảy ngay đến nội dung đó:
+      </p>
+      <div class="overview-grid" id="overview-grid">
+        <!-- Injected via presentation.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scenario Switcher Modal -->
+  <div class="modal-overlay" id="modal-scenario">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>🛒</span> Chọn Kịch Bản Dữ Liệu Demo
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-scenario').classList.remove('open')">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Chọn một kịch bản đời thực để kiểm chứng thuật toán ngay trong lúc thuyết trình:
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;" id="scenario-cards-container">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="modal-overlay" id="modal-help">
+    <div class="modal-card" style="max-width: 500px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>⌨️</span> Phím Tắt Thuyết Trình
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-help').classList.remove('open')">✕</button>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Chuyển slide tiếp theo</span>
+          <div><span class="kbd">→</span> <span class="kbd">Space</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Lùi slide trước đó</span>
+          <div><span class="kbd">←</span> <span class="kbd">Backspace</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Bật / Tắt chế độ Demo</span>
+          <div><span class="kbd">D</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Mở ghi chú người nói (Speaker Notes)</span>
+          <div><span class="kbd">N</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Xem tổng quan các slide</span>
+          <div><span class="kbd">O</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Đổi kịch bản dữ liệu mẫu</span>
+          <div><span class="kbd">S</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Bảng quy ước ký hiệu chuẩn</span>
+          <div><span class="kbd">K</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Toàn màn hình (Fullscreen)</span>
+          <div><span class="kbd">F</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+          <span>Xuất slide (PowerPoint / PDF / Google Slides)</span>
+          <div><span class="kbd">P</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Đóng các cửa sổ mở</span>
+          <div><span class="kbd">ESC</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theory & Academic Literature Modal -->
+  <div class="modal-overlay" id="modal-theory">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>📚</span> Cơ Sở Lý Thuyết & Tài Liệu Chuẩn Mực
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-theory').classList.remove('open')">✕</button>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.25rem; font-size: 0.9rem; line-height: 1.6;">
+        <!-- Citation -->
+        <div style="background: rgba(6, 182, 212, 0.08); border-left: 3px solid var(--accent-cyan); padding: 0.85rem 1rem; border-radius: 6px;">
+          <div style="font-weight: 700; color: #fff; margin-bottom: 2px;">📖 Nguồn tài liệu tham khảo chính:</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem;">
+            • <strong>Rakesh Agrawal & Ramakrishnan Srikant (1994)</strong>: <em>"Fast Algorithms for Mining Association Rules"</em> (VLDB '94).<br>
+            • <strong>Stanford CS246</strong>: <em>Mining Massive Datasets</em> (Jure Leskovec, Anand Rajaraman, Jeffrey Ullman).<br>
+            • <strong>Pang-Ning Tan, Michael Steinbach, Vipin Kumar</strong>: <em>"Introduction to Data Mining"</em> (Chương 6: Association Analysis).
+          </div>
+        </div>
+
+        <!-- 1. The Apriori Principle -->
+        <div>
+          <h4 style="color: #38bdf8; font-size: 0.95rem; font-weight: 700; margin-bottom: 4px;">
+            1. Tiên Đề Phản Đơn Điệu (Anti-Monotonicity / Apriori Principle)
+          </h4>
+          <p style="color: var(--text-main);">
+            <em>"Nếu một tập mục I là không phổ biến (Support &lt; min_supp), thì mọi siêu tập của nó (bất kỳ tập nào chứa I) chắc chắn cũng không phổ biến."</em>
+          </p>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+            ➔ <strong>Ý nghĩa thực tế:</strong> Tiết kiệm hàng tỷ phép tính. Khi thấy {Trứng} bán ế, gạch bỏ ngay lập tức tất cả các combo có Trứng mà không cần tốn thời gian quét lại cơ sở dữ liệu!
+          </div>
+        </div>
+
+        <!-- 2. Step-by-Step Cycle -->
+        <div>
+          <h4 style="color: #34d399; font-size: 0.95rem; font-weight: 700; margin-bottom: 4px;">
+            2. Chu Trình 2 Bước: Ghép Cặp (Join) & Tỉa Nhánh (Prune)
+          </h4>
+          <ul style="padding-left: 1.2rem; color: var(--text-muted); font-size: 0.85rem; display: flex; flex-direction: column; gap: 4px;">
+            <li><strong>Ghép cặp (Lₖ₋₁ ⨝ Lₖ₋₁):</strong> Hai tập k-1 phần tử được ghép lại nếu chúng trùng nhau k-2 phần tử đầu tiên.</li>
+            <li><strong>Tỉa nhánh (Prune Step):</strong> Trước khi tốn công đọc đĩa/quét bảng, kiểm tra mọi tập con k-1 của ứng viên. Nếu có bất kỳ tập con nào không nằm trong Lₖ₋₁, loại ngay!</li>
+          </ul>
+        </div>
+
+        <!-- 3. The 3 Metrics -->
+        <div>
+          <h4 style="color: #fbbf24; font-size: 0.95rem; font-weight: 700; margin-bottom: 4px;">
+            3. Bộ Ba Chỉ Số Vàng & Cách Ra Quyết Định Kinh Doanh
+          </h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; border: 1px solid var(--border-subtle);">
+              <strong style="color: #fbbf24; font-size: 0.8rem; display: block;">1. Support (Độ hỗ trợ)</strong>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #a5b4fc; margin: 2px 0;">Supp(A ∪ B) = σ(A ∪ B) / |D|</div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Lấy số đơn có cả hai ÷ tổng đơn hàng. Lọc nhiễu thống kê.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; border: 1px solid var(--border-subtle);">
+              <strong style="color: #818cf8; font-size: 0.8rem; display: block;">2. Confidence (Độ tin cậy)</strong>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #a5b4fc; margin: 2px 0;">Conf(A ⇒ B) = Supp(A ∪ B) / Supp(A)</div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Số đơn có cả hai ÷ số đơn mua A. Đo xác suất có điều kiện.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; border: 1px solid var(--border-subtle);">
+              <strong style="color: #34d399; font-size: 0.8rem; display: block;">3. Lift (Hệ số đòn bẩy)</strong>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #a5b4fc; margin: 2px 0;">Lift(A ⇒ B) = Conf(A ⇒ B) / Supp(B)</div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Tăng cơ hội mua B gấp mấy lần. &gt;1: Kích cầu; =1: Độc lập; &lt;1: Kỵ nhau.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mathematical Notation Glossary Modal -->
+  <div class="modal-overlay" id="modal-math-glossary">
+    <div class="modal-card" style="max-width: 780px; width: 95%;">
+      <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem;">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 8px; font-size: 1.15rem;">
+          <span>📐</span> Bảng Quy Ước Ký Hiệu Chuẩn Học Thuật (Agrawal 1994 &bull; Tan 2006)
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-math-glossary').classList.remove('open')">✕</button>
+      </div>
+
+      <div style="max-height: 480px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.88rem; line-height: 1.55;">
+        <div style="background: rgba(99, 102, 241, 0.08); border-left: 3px solid var(--accent-primary); padding: 8px 12px; border-radius: 6px; color: #cbd5e1;">
+          Toàn bộ các công thức, thuật toán và bài thuyết trình đều tuân thủ <strong>100% nhất quán</strong> theo hệ thống ký hiệu chuẩn quốc tế sau:
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.84rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.15); color: var(--accent-cyan); text-align: left;">
+              <th style="padding: 7px 10px; width: 14%;">Ký hiệu</th>
+              <th style="padding: 7px 10px; width: 22%;">Tên gọi chuẩn</th>
+              <th style="padding: 7px 10px;">Ý nghĩa & Bản chất toán học</th>
+              <th style="padding: 7px 10px; width: 24%;">Ví dụ cụ thể</th>
+            </tr>
+          </thead>
+          <tbody style="font-family: var(--font-mono); font-size: 0.82rem;">
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">I</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Danh mục mặt hàng</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Tập hợp d sản phẩm có trong toàn siêu thị: I = {i₁, i₂, ..., i_d}</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">I = {Bia, Tã, Bơ, Sữa, Bánh mì}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">d</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Số lượng mặt hàng</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Quy mô danh mục sản phẩm (d = |I|)</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">d = 5 mặt hàng</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">D, |D|</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Cơ sở dữ liệu</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">D: Tập tất cả giao dịch; |D|: Tổng số đơn hàng (Database Size)</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">|D| = 7 đơn hàng (CSDL demo)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">X, Y</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Tập mục (Itemset)</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Tập hợp gồm một hoặc nhiều món hàng (X ⊆ I)</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">X = {Bia}, Y = {Bia, Tã}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">X ⊆ Y</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Quan hệ tập con</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">X là tập con nằm trọn trong tập cha Y ➔ Supp(Y) ≤ Supp(X)</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">{Bia} ⊆ {Bia, Tã}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">k</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Kích thước combo</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Số món trong combo: k=1 (món đơn), k=2 (cặp đôi), k=3 (bộ 3)</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">k = 2 cho cặp {Bia, Tã}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fff; font-weight: 700;">σ(X)</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Tần số xuất hiện</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Support Count: Số đơn hàng thực tế chứa X trong D</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">σ({Bia, Tã}) = 4 đơn</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #fbbf24; font-weight: 700;">Supp(X)</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Độ hỗ trợ</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Supp(X) = σ(X) / |D| ∈ [0, 1]. Đo tần suất xuất hiện toàn cục</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">Supp = 4/7 = 57.1%</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #38bdf8; font-weight: 700;">C_k</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Tập ứng viên</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Candidates kích thước k sinh ra sau bước ghép nối Join</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">C₂ có các cặp tiềm năng</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #34d399; font-weight: 700;">L_k</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Tập phổ biến</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Frequent itemsets kích thước k vượt qua ngưỡng Supp ≥ min_sup</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">L₂ gồm 3 cặp phổ biến</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #c084fc; font-weight: 700;">A ⇒ B</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Quy tắc kết hợp</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Luật có hướng: A là tiền đề (Antecedent), B là hệ quả (Consequent)</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">[ Bia ] ➔ [ Tã giấy ]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <td style="padding: 7px 10px; color: #818cf8; font-weight: 700;">Conf</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Độ tin cậy</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Conf(A ⇒ B) = Supp(A ∪ B) / Supp(A) = P(B|A). Xác suất có điều kiện</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">Conf = 4/4 = 100%</td>
+            </tr>
+            <tr>
+              <td style="padding: 7px 10px; color: #34d399; font-weight: 700;">Lift</td>
+              <td style="padding: 7px 10px; color: #a5b4fc; font-family: var(--font-sans);">Hệ số đòn bẩy</td>
+              <td style="padding: 7px 10px; color: #cbd5e1; font-family: var(--font-sans);">Lift = Conf(A ⇒ B) / Supp(B). &gt;1: Kích cầu; =1: Độc lập; &lt;1: Kỵ nhau</td>
+              <td style="padding: 7px 10px; color: #fef08a; font-family: var(--font-sans);">Lift = 1.75x (Kích cầu mạnh)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Results & Executive Summary Modal -->
+  <div class="modal-overlay" id="modal-final-results">
+    <div class="modal-card" style="max-width: 760px; width: 95%; border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 30px rgba(56, 189, 248, 0.25);">
+      <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.85rem;">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 10px; font-size: 1.25rem;">
+          <span style="font-size: 1.5rem;">🏆</span>
+          <span style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">
+            Khai Phá Hoàn Tất • Tổng Kết Thuật Toán
+          </span>
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-final-results').classList.remove('open')">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.5rem;">
+        <!-- Scenario Banner -->
+        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.04); padding: 0.65rem 1rem; border-radius: 8px; border: 1px solid var(--border-subtle);">
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Kịch bản dữ liệu</div>
+            <div id="final-modal-dataset-name" style="font-weight: 700; color: #fff; font-size: 1.05rem;">Siêu thị bán lẻ (Market Basket)</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Ngưỡng thiết lập</div>
+            <div id="final-modal-thresholds" style="font-family: var(--font-mono); font-size: 0.95rem; color: #38bdf8;">Min Sup: 40% • Min Conf: 60%</div>
+          </div>
+        </div>
+
+        <!-- 4 Stats Counter Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.65rem 0.5rem; text-align: center;">
+            <div style="font-size: 0.75rem; color: var(--text-dim);">🛒 Giao dịch</div>
+            <div id="final-modal-tx-count" style="font-size: 1.35rem; font-weight: 800; color: #fff;">0</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.65rem 0.5rem; text-align: center;">
+            <div style="font-size: 0.75rem; color: var(--text-dim);">⭐ Tập phổ biến</div>
+            <div id="final-modal-frequent-count" style="font-size: 1.35rem; font-weight: 800; color: var(--accent-gold);">0</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.65rem 0.5rem; text-align: center;">
+            <div style="font-size: 0.75rem; color: var(--text-dim);">✂️ Đã tỉa sớm</div>
+            <div id="final-modal-pruned-count" style="font-size: 1.35rem; font-weight: 800; color: #f87171;">0</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.65rem 0.5rem; text-align: center;">
+            <div style="font-size: 0.75rem; color: var(--text-dim);">🎯 Luật tìm thấy</div>
+            <div id="final-modal-rules-count" style="font-size: 1.35rem; font-weight: 800; color: #34d399;">0</div>
+          </div>
+        </div>
+
+        <!-- Rules Section Header -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.2rem;">
+          <div style="font-size: 0.95rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
+            <span>📋 Bảng Xếp Hạng Quy Luật Khai Phá Được</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 400;">(Sắp xếp theo Lift giảm dần)</span>
+          </div>
+          <span id="final-modal-rules-badge" class="badge badge-frequent" style="font-size: 0.78rem;">Top 3 Nổi Bật</span>
+        </div>
+
+        <!-- Scrollable Rules List Container -->
+        <div id="final-modal-rules-list" class="final-modal-rules-container">
+          <!-- Dynamically populated by visualizer.js -->
+        </div>
+
+        <!-- Next Dataset Switcher & Action Buttons -->
+        <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.25rem;">
+          <button id="btn-final-modal-next-dataset" class="hero-start-btn" style="width: 100%; justify-content: center; padding: 11px 20px; font-size: 1.02rem;">
+            ⏩ Khám Phá Kịch Bản Tiếp Theo
+          </button>
+          
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="nav-arrow-btn" style="flex: 1; padding: 9px; font-size: 0.92rem;" onclick="document.getElementById('modal-final-results').classList.remove('open')">
+              🔍 Soi Chi Tiết Trên Bàn Làm Việc
+            </button>
+            <button class="nav-arrow-btn" style="flex: 1; padding: 9px; font-size: 0.92rem;" onclick="(window.simulatorVisualizer || window.visualizer)?.recompute(); document.getElementById('modal-final-results').classList.remove('open');">
+              ↺ Chạy Lại Kịch Bản Này
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Slides Modal -->
+  <div class="modal-overlay" id="modal-export">
+    <div class="modal-card" style="max-width: 620px; width: 95%;">
+      <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem;">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 8px; font-size: 1.2rem;">
+          <span>📥</span> Xuất Bài Thuyết Trình (Export Slides)
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('modal-export').classList.remove('open')">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+        <!-- Option 1: PPTX Download for Google Slides -->
+        <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 12px; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.8rem;">📊</span>
+              <div>
+                <strong style="color: #fff; font-size: 1.1rem; display: block;">Microsoft PowerPoint (.pptx) 16:9</strong>
+                <span style="font-size: 0.85rem; color: var(--accent-cyan);">Chuẩn Widescreen • Tương thích 100% Google Slides & Drive</span>
+              </div>
+            </div>
+            <span class="badge badge-frequent">Khuyên Dùng</span>
+          </div>
+
+          <p style="margin: 0; font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;">
+            Bao gồm toàn bộ 11 slide thiết kế Dark-Tech, thẻ thông tin trực quan, công thức toán học và <strong>đầy đủ Speaker Notes (Ghi chú diễn giả)</strong>.
+          </p>
+
+          <div style="display: flex; gap: 0.75rem; margin-top: 0.25rem;">
+            <a href="apriori_presentation.pptx" download="apriori_presentation.pptx" class="hero-start-btn" style="flex: 1; text-align: center; text-decoration: none; justify-content: center; padding: 10px 16px; font-size: 0.95rem;">
+              ⬇ Tải File .PPTX (53 KB)
+            </a>
+          </div>
+
+          <!-- Step-by-step instructions for Google Drive / Google Slides -->
+          <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 0.85rem 1rem; font-size: 0.88rem; color: #cbd5e1; line-height: 1.6;">
+            <strong style="color: #fef08a; display: block; margin-bottom: 4px;">🚀 2 bước đưa lên Google Slides:</strong>
+            1. Mở <a href="https://drive.google.com" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">Google Drive</a> và kéo thả file <code>apriori_presentation.pptx</code> vừa tải vào Drive.<br>
+            2. Nhấp đúp vào file trên Drive ➔ Chọn <strong>Mở bằng Google Trang trình bày (Google Slides)</strong>. Toàn bộ 11 slide và speaker notes sẽ hiển thị hoàn hảo!
+          </div>
+        </div>
+
+        <!-- Option 2: Print / Save PDF -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.8rem;">📄</span>
+              <div>
+                <strong style="color: #fff; font-size: 1.1rem; display: block;">In / Lưu Thành PDF (Vector 16:9)</strong>
+                <span style="font-size: 0.85rem; color: var(--text-dim);">Dùng tính năng In của trình duyệt (Browser Print)</span>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin: 0; font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;">
+            Trình duyệt sẽ xuất trực tiếp 11 slide dưới dạng tài liệu vector sắc nét, tự động căn chỉnh khổ ngang 16:9 không có thanh điều khiển hay viền thừa.
+          </p>
+
+          <button class="nav-arrow-btn" style="width: 100%; justify-content: center; padding: 10px 16px; font-size: 0.95rem; border-color: rgba(99,102,241,0.5); color: #c7d2fe;" onclick="document.getElementById('modal-export').classList.remove('open'); setTimeout(() => window.print(), 300);">
+            🖨️ Mở Hộp Thoại In / Lưu PDF (Cmd + P)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Dynamic Tooltip / Popover (Hover Float Message) -->
+  <div id="float-tooltip" class="float-tooltip"></div>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/datasets.js"></script>
+  <script src="js/apriori.js"></script>
+  <script src="js/presentation.js"></script>
+  <script src="js/visualizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

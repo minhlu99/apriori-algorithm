@@ -1,0 +1,1476 @@
+/* ==========================================================================
+   Presentation Slides Styles
+   Aesthetic: Slick, Modern Keynote, 16:9 Presentation Deck
+   ========================================================================== */
+
+.presentation-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 16:9 Aspect Ratio Frame for Presentation */
+.slide-stage {
+  position: relative;
+  width: min(96vw, 1540px);
+  height: min(88vh, 900px);
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fullscreen adjustments */
+:fullscreen .slide-stage,
+:-webkit-full-screen .slide-stage {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  border: none;
+}
+
+/* Slides Track */
+.slides-viewport {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 1.85rem 3.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  z-index: 2;
+}
+
+.slide.prev {
+  transform: translateY(-20px) scale(0.98);
+}
+
+/* Slide Header & Titles */
+.slide-header {
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.slide-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+}
+
+.slide-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.slide-title span.gradient-text {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff 30%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-top: 0.08em;
+  padding-bottom: 0.05em;
+}
+
+.slide-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  max-width: 1400px;
+  line-height: 1.45;
+}
+
+/* Slide Content Layout Grids */
+.slide-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+  flex: 1;
+}
+
+.grid-3-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+  flex: 1;
+}
+
+/* Modern Card Layouts */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-lg);
+  padding: 2.25rem 2.5rem;
+  backdrop-filter: var(--glass-backdrop);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.glass-card h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.glass-card p {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.glass-card ul, .glass-card ol {
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+.glass-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card.highlight {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Slide 1: Hero Cover */
+.hero-slide {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  padding: 8px 22px;
+  border-radius: 100px;
+  font-size: 1rem;
+  color: #818cf8;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.18;
+  margin-bottom: 1.5rem;
+  max-width: 1050px;
+}
+
+:fullscreen .hero-title,
+:-webkit-full-screen .hero-title {
+  font-size: 4.4rem;
+}
+
+.hero-title .glow {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 1.35rem;
+  color: var(--text-muted);
+  max-width: 880px;
+  line-height: 1.65;
+  margin-bottom: 3rem;
+}
+
+:fullscreen .hero-desc,
+:-webkit-full-screen .hero-desc {
+  font-size: 1.5rem;
+}
+
+.hero-features {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.hero-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1px solid var(--border-subtle);
+}
+
+.hero-start-btn {
+  background: linear-gradient(135deg, var(--accent-primary), #4338ca);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: 16px 40px;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.7);
+}
+
+.slide-cta-group {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-cta-primary {
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.45);
+  font-size: 1.25rem;
+  padding: 16px 42px;
+}
+
+.slide-cta-secondary {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+}
+
+/* Slide 2: Beer & Diaper Story */
+.story-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.story-card-highlight {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 1.75rem 2rem;
+  border-radius: var(--border-radius-md);
+}
+
+.story-icon-combo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 3.4rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 22px;
+  border-radius: var(--border-radius-md);
+}
+
+.story-vs-badge {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--accent-cyan);
+}
+
+/* Slide 3: Combinatorial Explosion Visual */
+.explosion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.explosion-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--bg-card);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.explosion-row.danger {
+  border-color: var(--status-pruned-border);
+  background: var(--status-pruned-bg);
+}
+
+.explosion-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(244, 63, 94, 0.15);
+  z-index: 0;
+  transition: width 1s ease;
+}
+
+.explosion-label, .explosion-val, .explosion-calc {
+  position: relative;
+  z-index: 1;
+}
+
+.explosion-calc {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Slide 4: Lattice Tree Pruning Visual */
+.lattice-preview {
+  width: 100%;
+  height: 320px;
+  background: rgba(10, 13, 22, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lattice-node {
+  position: absolute;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.lattice-node.normal {
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+}
+
+.lattice-node.pruned {
+  background: var(--status-pruned-bg);
+  border: 1px dashed var(--status-pruned);
+  color: #f87171;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.lattice-node.frequent {
+  background: var(--status-frequent-bg);
+  border: 1px solid var(--status-frequent);
+  color: #34d399;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Slide 5: Metric Cards (Support, Confidence, Lift) */
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.metric-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.metric-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.metric-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.15rem;
+}
+
+.metric-example {
+  background: rgba(255, 255, 255, 0.035);
+  border-left: 3px solid var(--accent-cyan);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.metric-formula {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.85rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+  color: #a5b4fc;
+  border-left: 3px solid var(--accent-primary);
+}
+
+.metric-plain-explain {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.metric-plain-explain strong {
+  color: #fff;
+}
+
+/* Slide 4: Formula Intuition & Rationale Callout Box */
+.formula-rationale-box {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 6px;
+  padding: 7px 10px;
+  margin: 0.35rem 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.rationale-header {
+  font-size: 0.86rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 3px;
+  letter-spacing: 0.01em;
+}
+
+.rationale-body {
+  font-size: 0.92rem;
+  color: #f1f5f9;
+  line-height: 1.48;
+}
+
+.rationale-list {
+  margin: 3px 0 3px 18px;
+  padding: 0;
+  list-style-type: disc;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+
+.rationale-list li {
+  margin-bottom: 2px;
+}
+
+/* Slide 4 Specific Spacing to guarantee zero vertical scroll */
+.slide[data-slide="4"] {
+  padding: 1.4rem 3.5rem 1rem;
+}
+
+.slide[data-slide="4"] .metric-card {
+  padding: 0.85rem 1.15rem;
+  gap: 0.3rem;
+}
+
+/* Slide 7 Prune Checklist styles */
+.prune-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.prune-checklist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+}
+
+.prune-checklist-item.pass {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #a7f3d0;
+}
+
+.prune-checklist-item.fail {
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  color: #fca5a5;
+  font-weight: 700;
+}
+
+/* Slide Deck Bottom Control Bar */
+.slide-controls {
+  height: var(--footer-height);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(12, 17, 28, 0.8);
+  backdrop-filter: var(--glass-backdrop);
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.slide-counter {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.slide-counter .current {
+  color: #fff;
+  font-weight: 700;
+}
+
+.progress-track {
+  width: 140px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-cyan));
+  transition: width 0.3s ease;
+}
+
+.controls-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-arrow-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.nav-arrow-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.key-hint {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kbd {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Presenter Notes Drawer */
+.notes-drawer {
+  position: absolute;
+  bottom: var(--footer-height);
+  left: 0;
+  right: 0;
+  background: rgba(9, 13, 24, 0.95);
+  border-top: 1px solid var(--border-accent);
+  backdrop-filter: blur(16px);
+  padding: 1.25rem 2rem;
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+}
+
+.notes-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.notes-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #818cf8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.notes-content {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.notes-content ul {
+  padding-left: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.notes-content li {
+  margin-bottom: 0.25rem;
+}
+
+/* Slide Overview Grid Modal */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.overview-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.overview-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.overview-card.active {
+  border-color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.overview-card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-bottom: 4px;
+}
+
+.overview-card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Metric Summary Comparison Table */
+.metric-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.metric-summary-table th {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.9rem 1.15rem;
+  text-align: left;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-summary-table td {
+  padding: 0.95rem 1.15rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  vertical-align: top;
+  font-size: 1.02rem;
+}
+
+.metric-summary-table tr:last-child td {
+  border-bottom: none;
+}
+
+.metric-summary-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ==========================================================================
+   ACADEMIC MATH FORMULA & LIFT VISUAL GAUGE STYLES
+   ========================================================================== */
+
+.math-formula-box {
+  background: rgba(6, 9, 17, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: var(--border-radius-md);
+  padding: 1rem 1.25rem;
+  margin: 0.85rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.math-standard {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 1.12rem;
+  color: #f1f5f9;
+  line-height: 1.2;
+}
+
+.math-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0 4px;
+}
+
+.math-num {
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.math-den {
+  padding-top: 2px;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.math-plain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.98rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 7px 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-cyan);
+  line-height: 1.45;
+}
+
+.math-plain strong {
+  color: #f8fafc;
+}
+
+/* Visual Lift Gauge / Meter */
+.lift-gauge {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 0.35rem;
+}
+
+.lift-tier {
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lift-tier-title {
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.lift-tier-pos {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #86efac;
+}
+
+.lift-tier-pos .lift-tier-title {
+  color: #34d399;
+}
+
+.lift-tier-neutral {
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: #fde047;
+}
+
+.lift-tier-neutral .lift-tier-title {
+  color: #facc15;
+}
+
+.lift-tier-neg {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  color: #fca5a5;
+}
+
+.lift-tier-neg .lift-tier-title {
+  color: #f87171;
+}
+
+/* Contrast Case Study Box for Slide 6 */
+.contrast-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.65rem;
+}
+
+.contrast-card {
+  padding: 1rem 1.15rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contrast-card.bad {
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+}
+
+.contrast-card.good {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* ==========================================================================
+   MATHEMATICAL NOTATION LEGEND BAR (Slide 5 & 7)
+   ========================================================================== */
+
+.math-legend-bar {
+  margin-top: 0.65rem;
+  background: rgba(10, 15, 28, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: var(--border-radius-md);
+  padding: 0.65rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.math-legend-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.math-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+}
+
+.legend-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.025);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.legend-sym {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-sym .sym-pill {
+  background: rgba(99, 102, 241, 0.25);
+  color: #a5b4fc;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.legend-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.legend-desc strong {
+  color: #cbd5e1;
+}
+
+/* Fullscreen Slide Centering and Proportion Guard */
+:fullscreen .slide,
+:-webkit-full-screen .slide {
+  padding: 1.75rem 4rem 1.25rem;
+  max-width: 1650px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+:fullscreen .slide-title,
+:-webkit-full-screen .slide-title {
+  font-size: 2.65rem;
+}
+
+:fullscreen .slide-subtitle,
+:-webkit-full-screen .slide-subtitle {
+  font-size: 1.25rem;
+  max-width: 1600px;
+}
+
+/* Slide 5 Specific Compact Spacing to Prevent Scroll */
+[data-slide="5"] .slide-body {
+  gap: 0.55rem;
+  justify-content: flex-start;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & ACCENT HIGHLIGHTS FOR VIETNAMESE PRESENTATION
+   ========================================================================== */
+
+.math-term {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.15);
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.95em;
+  display: inline-block;
+}
+
+.hl-gold {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.hl-cyan {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.hl-green {
+  color: #34d399;
+  font-weight: 700;
+}
+
+.hl-red {
+  color: #f87171;
+  font-weight: 700;
+}
+
+.hl-purple {
+  color: #c084fc;
+  font-weight: 700;
+}
+
+/* Bottom Pro-Tip / Takeaway Callout Bar */
+.slide-pro-tip {
+  margin-top: 1.25rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: var(--border-radius-md);
+  padding: 1.15rem 1.65rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.slide-pro-tip-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.slide-pro-tip strong {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Responsive Slides Media Queries (Mobile & Tablet)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .presentation-container {
+    padding: 0;
+  }
+
+  .slide-stage {
+    width: 100vw;
+    height: calc(100vh - var(--header-height));
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .slide {
+    padding: 1rem 0.85rem 4.8rem 0.85rem !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slide-header {
+    margin-bottom: 0.85rem;
+    gap: 0.25rem;
+  }
+
+  .slide-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .slide-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  .slide-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .slide-body {
+    gap: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Force all multi-column grids to 1 column on mobile */
+  .grid-2-cols,
+  .grid-3-cols {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.85rem !important;
+  }
+
+  .glass-card {
+    padding: 1rem 1.15rem;
+    border-radius: var(--border-radius-md);
+  }
+
+  .glass-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .glass-card p,
+  .glass-card ul,
+  .glass-card ol {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* Slide 1 & Slide 9 Hero Slides */
+  .hero-slide {
+    justify-content: flex-start !important;
+    padding: 1.25rem 0.85rem 5rem 0.85rem !important;
+    overflow-y: auto !important;
+  }
+
+  .hero-pill {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.22;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 1.15rem;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-feature-item {
+    font-size: 0.82rem;
+    padding: 8px 14px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .slide-cta-group {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+
+  .slide-cta-primary,
+  .slide-cta-secondary {
+    width: 100% !important;
+    font-size: 0.95rem !important;
+    padding: 12px 18px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Slide 4 Metrics */
+  .metric-card {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .metric-title {
+    font-size: 1.1rem;
+  }
+
+  .metric-formula {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    overflow-x: auto;
+  }
+
+  .rationale-body,
+  .metric-plain-explain {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  /* Slide 5 Lattice */
+  .lattice-preview {
+    height: auto;
+    min-height: 240px;
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  /* Slide 6 Table */
+  .metric-summary-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.78rem;
+  }
+
+  .metric-summary-table th,
+  .metric-summary-table td {
+    padding: 6px 8px;
+    white-space: normal;
+  }
+
+  /* Slide 7 Workflow */
+  .prune-checklist-item {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+
+  /* Slide Pro-Tip */
+  .slide-pro-tip {
+    padding: 0.75rem 0.95rem;
+    font-size: 0.82rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .slide-pro-tip-icon {
+    font-size: 1.25rem;
+  }
+
+  /* Slide Deck Controls Footer */
+  .slide-controls {
+    padding: 0.4rem 0.65rem;
+    min-height: 48px;
+    background: rgba(10, 13, 20, 0.85);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+  }
+
+  .key-hint {
+    display: none !important;
+  }
+
+  .controls-left {
+    gap: 6px;
+  }
+
+  .slide-counter {
+    font-size: 0.8rem;
+  }
+
+  .progress-track {
+    width: 50px;
+  }
+
+  .controls-center {
+    gap: 6px;
+  }
+
+  .nav-arrow-btn {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+    min-height: 38px;
+  }
+
+  .controls-right button {
+    padding: 4px 8px !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 1.55rem;
+  }
+
+  .controls-right button span {
+    font-size: 0.7rem;
+  }
+
+  .nav-arrow-btn {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+/* ==========================================================================
+   Print / Export PDF Styles (16:9 Landscape Widescreen)
+   ========================================================================== */
+@media print {
+  @page {
+    size: 16in 9in;
+    margin: 0;
+  }
+
+  html, body {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #0A0D14 !important;
+    color: #e2e8f0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .ambient-bg,
+  .app-header,
+  .slide-controls,
+  .notes-drawer,
+  .modal-overlay,
+  .hero-start-btn,
+  .slide-cta-group,
+  #simulator-view,
+  .toast-container {
+    display: none !important;
+  }
+
+  #app-root,
+  .main-viewport,
+  .presentation-container {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .slide-stage {
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .slides-viewport {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .slide {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 16in !important;
+    height: 9in !important;
+    min-height: 9in !important;
+    max-height: 9in !important;
+    box-sizing: border-box !important;
+    padding: 2.2rem 3.5rem !important;
+    background: #0A0D14 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    overflow: hidden !important;
+  }
+
+  .slide-body {
+    flex: 1 !important;
+  }
+
+  .glass-card,
+  .metric-card,
+  .slide-pro-tip,
+  .story-card-highlight,
+  .math-formula-box,
+  .hero-feature-item,
+  .hero-pill,
+  .badge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+
